@@ -8,7 +8,7 @@ import {
 } from "react";
 import { Transition } from "react-transition-group";
 import { sidebarTheme } from "./theme";
-import { useClickOutside } from "../hooks/useClickOutside";
+import { useClickOutside } from "../../hooks/useClickOutside";
 import { IDefaultStyle, ITransitionStyle } from "./types";
 
 interface ISidebar {

@@ -1,0 +1,108 @@
+.terkui-flex {
+  display: flex;
+}
+.terkui-inline-flex {
+  display: inline-flex;
+}
+
+/* 1. Fix for Chrome 44 bug.
+ * https://code.google.com/p/chromium/issues/detail?id=506893
+*/
+.terkui-flex-auto {
+  flex: 1 1 auto;
+  min-width: 0; /* 1 */
+  min-height: 0; /* 1 */
+}
+
+.terkui-flex-none {
+  flex: none;
+}
+
+.terkui-flex-column {
+  flex-direction: column;
+}
+.terkui-flex-row {
+  flex-direction: row;
+}
+.terkui-flex-wrap {
+  flex-wrap: wrap;
+}
+.terkui-flex-nowrap {
+  flex-wrap: nowrap;
+}
+.terkui-flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+.terkui-flex-column-reverse {
+  flex-direction: column-reverse;
+}
+.terkui-flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.terkui-items-start {
+  align-items: flex-start;
+}
+.terkui-items-end {
+  align-items: flex-end;
+}
+.terkui-items-center {
+  align-items: center;
+}
+.terkui-items-baseline {
+  align-items: baseline;
+}
+.terkui-items-stretch {
+  align-items: stretch;
+}
+
+.terkui-self-start {
+  align-self: flex-start;
+}
+.terkui-self-end {
+  align-self: flex-end;
+}
+.terkui-self-center {
+  align-self: center;
+}
+.terkui-self-baseline {
+  align-self: baseline;
+}
+.terkui-self-stretch {
+  align-self: stretch;
+}
+
+.terkui-justify-start {
+  justify-content: flex-start;
+}
+.terkui-justify-end {
+  justify-content: flex-end;
+}
+.terkui-justify-center {
+  justify-content: center;
+}
+.terkui-justify-between {
+  justify-content: space-between;
+}
+.terkui-justify-around {
+  justify-content: space-around;
+}
+
+.terkui-content-start {
+  align-content: flex-start;
+}
+.terkui-content-end {
+  align-content: flex-end;
+}
+.terkui-content-center {
+  align-content: center;
+}
+.terkui-content-between {
+  align-content: space-between;
+}
+.terkui-content-around {
+  align-content: space-around;
+}
+.terkui-content-stretch {
+  align-content: stretch;
+}

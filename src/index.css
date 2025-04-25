@@ -11,6 +11,19 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  --breakpoint-max-width-sm: 540px;
+  --breakpoint-max-width-md: 720px;
+  --breakpoint-max-width-lg: 960px;
+  --breakpoint-max-width-xl: 1140px;
+  --breakpoint-max-width-2xl: 1320px;
 }
 
 a {
