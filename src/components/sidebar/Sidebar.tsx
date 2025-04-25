@@ -1,6 +1,7 @@
 import {
   FC,
   ReactElement,
+  Ref,
   RefObject,
   useEffect,
   useRef,
@@ -13,8 +14,8 @@ import { IDefaultStyle, ITransitionStyle } from "./types";
 
 interface ISidebar {
   isClose: boolean;
-  timeout: number;
-  theme: {
+  timeout?: number;
+  theme?: {
     sidebar: {
       dark: {
         color: string;
@@ -26,8 +27,8 @@ interface ISidebar {
       };
     };
   };
-  themeMode: "dark" | "light";
-  width: number;
+  themeMode?: "dark" | "light";
+  width?: number;
   className?: string;
   handleClose?: () => void;
   renderChildren?: ({
@@ -35,7 +36,7 @@ interface ISidebar {
     style,
     props,
   }: {
-    ref?: RefObject<HTMLElement | null>;
+    ref?: RefObject<HTMLDivElement | null> | Ref<HTMLDivElement | null>;
     style: IDefaultStyle;
     props?: Record<string, unknown>;
   }) => ReactElement;
@@ -63,8 +64,16 @@ const Sidebar: FC<ISidebar> = (
     flexDirection: "column",
     width: `${props.width}px`,
     transition: ".3s ease-out",
-    color: `${props.theme.sidebar[props.themeMode].color}`,
-    backgroundColor: `${props.theme.sidebar[props.themeMode].backgroundColor}`,
+    color: `${
+      props.theme?.sidebar
+        ? props.theme?.sidebar[props.themeMode || "light"].color
+        : ""
+    }`,
+    backgroundColor: `${
+      props.theme?.sidebar
+        ? props.theme.sidebar[props.themeMode || "light"].backgroundColor
+        : ""
+    }`,
   };
 
   const transitionStyles: ITransitionStyle = {
@@ -80,10 +89,12 @@ const Sidebar: FC<ISidebar> = (
     }
   }, [props.isClose, isClose]);
 
-  const sidebarRef: RefObject<HTMLElement | null> = useRef(null);
+  const sidebarRef:
+    | RefObject<HTMLDivElement | null>
+    | Ref<HTMLDivElement | null> = useRef(null);
   useClickOutside(sidebarRef, props.handleClose);
   return (
-    <Transition in={isClose} timeout={props.timeout}>
+    <Transition in={isClose} timeout={props.timeout || 150}>
       {(state, childProps) => {
         const children = props?.renderChildren
           ? props.renderChildren({

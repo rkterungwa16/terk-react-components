@@ -1,3 +1,7 @@
+/* Modules */
+@import './styles/flexbox.css';
+@import './styles/height.css';
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -30,5 +34,4 @@ body {
   min-height: 100vh;
 }
 
-/* Modules */
-@import './styles/flexbox.css';
+
