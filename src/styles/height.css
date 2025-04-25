@@ -1,0 +1,334 @@
+/* Height Scale */
+
+.terkui-h1 {
+  height: 1rem;
+}
+.terkui-h2 {
+  height: 2rem;
+}
+.terkui-h3 {
+  height: 4rem;
+}
+.terkui-h4 {
+  height: 8rem;
+}
+.terkui-h5 {
+  height: 16rem;
+}
+
+/* Height Percentages - Based off of height of parent */
+
+.terkui-h-25 {
+  height: 25%;
+}
+.terkui-h-50 {
+  height: 50%;
+}
+.terkui-h-75 {
+  height: 75%;
+}
+.terkui-h-100 {
+  height: 100%;
+}
+
+.terkui-min-h-100 {
+  min-height: 100%;
+}
+
+/* Screen Height Percentage */
+
+.terkui-vh-25 {
+  height: 25vh;
+}
+.terkui-vh-50 {
+  height: 50vh;
+}
+.terkui-vh-75 {
+  height: 75vh;
+}
+.terkui-vh-100 {
+  height: 100vh;
+}
+
+.terkui-min-vh-100 {
+  min-height: 100vh;
+}
+
+/* String Properties */
+
+.terkui-h-auto {
+  height: auto;
+}
+.terkui-h-inherit {
+  height: inherit;
+}
+
+@media only screen and (min-width: var(--breakpoint-sm)) {
+  .terkui-h1-nsm {
+    height: 1rem;
+  }
+  .terkui-h2-nsm {
+    height: 2rem;
+  }
+  .terkui-h3-nsm {
+    height: 4rem;
+  }
+  .terkui-h4-nsm {
+    height: 8rem;
+  }
+  .terkui-h5-nsm {
+    height: 16rem;
+  }
+  .terkui-h-25-nsm {
+    height: 25%;
+  }
+  .terkui-h-50-nsm {
+    height: 50%;
+  }
+  .terkui-h-75-nsm {
+    height: 75%;
+  }
+  .terkui-h-100-nsm {
+    height: 100%;
+  }
+  .min-h-100-nsm {
+    min-height: 100%;
+  }
+  .vh-25-nsm {
+    height: 25vh;
+  }
+  .vh-50-nsm {
+    height: 50vh;
+  }
+  .vh-75-nsm {
+    height: 75vh;
+  }
+  .vh-100-nsm {
+    height: 100vh;
+  }
+  .min-vh-100-nsm {
+    min-height: 100vh;
+  }
+  .terkui-h-auto-nsm {
+    height: auto;
+  }
+  .terkui-h-inherit-nsm {
+    height: inherit;
+  }
+}
+
+@media only screen and (min-width: var(--breakpoint-md)) {
+  .terkui-h1-nmd {
+    height: 1rem;
+  }
+  .terkui-h2-nmd {
+    height: 2rem;
+  }
+  .terkui-h3-nmd {
+    height: 4rem;
+  }
+  .terkui-h4-nmd {
+    height: 8rem;
+  }
+  .terkui-h5-nmd {
+    height: 16rem;
+  }
+  .terkui-h-25-nmd {
+    height: 25%;
+  }
+  .terkui-h-50-nmd {
+    height: 50%;
+  }
+  .terkui-h-75-nmd {
+    height: 75%;
+  }
+  .terkui-h-100-nmd {
+    height: 100%;
+  }
+  .min-h-100-nmd {
+    min-height: 100%;
+  }
+  .vh-25-nmd {
+    height: 25vh;
+  }
+  .vh-50-nmd {
+    height: 50vh;
+  }
+  .vh-75-nmd {
+    height: 75vh;
+  }
+  .vh-100-nmd {
+    height: 100vh;
+  }
+  .min-vh-100-nmd {
+    min-height: 100vh;
+  }
+  .terkui-h-auto-nmd {
+    height: auto;
+  }
+  .terkui-h-inherit-nmd {
+    height: inherit;
+  }
+}
+
+@media only screen and (min-width: var(--breakpoint-lg)) {
+  .terkui-h1-nlg {
+    height: 1rem;
+  }
+  .terkui-h2-nlg {
+    height: 2rem;
+  }
+  .terkui-h3-nlg {
+    height: 4rem;
+  }
+  .terkui-h4-nlg {
+    height: 8rem;
+  }
+  .terkui-h5-nlg {
+    height: 16rem;
+  }
+  .terkui-h-25-nlg {
+    height: 25%;
+  }
+  .terkui-h-50-nlg {
+    height: 50%;
+  }
+  .terkui-h-75-nlg {
+    height: 75%;
+  }
+  .terkui-h-100-nlg {
+    height: 100%;
+  }
+  .min-h-100-nlg {
+    min-height: 100%;
+  }
+  .vh-25-nlg {
+    height: 25vh;
+  }
+  .vh-50-nlg {
+    height: 50vh;
+  }
+  .vh-75-nlg {
+    height: 75vh;
+  }
+  .vh-100-nlg {
+    height: 100vh;
+  }
+  .min-vh-100-nlg {
+    min-height: 100vh;
+  }
+  .terkui-h-auto-nlg {
+    height: auto;
+  }
+  .terkui-h-inherit-nlg {
+    height: inherit;
+  }
+}
+
+@media only screen and (min-width: var(--breakpoint-xl)) {
+  .terkui-h1-nxl {
+    height: 1rem;
+  }
+  .terkui-h2-nxl {
+    height: 2rem;
+  }
+  .terkui-h3-nxl {
+    height: 4rem;
+  }
+  .terkui-h4-nxl {
+    height: 8rem;
+  }
+  .terkui-h5-nxl {
+    height: 16rem;
+  }
+  .terkui-h-25-nxl {
+    height: 25%;
+  }
+  .terkui-h-50-nxl {
+    height: 50%;
+  }
+  .terkui-h-75-nxl {
+    height: 75%;
+  }
+  .terkui-h-100-nxl {
+    height: 100%;
+  }
+  .min-h-100-nxl {
+    min-height: 100%;
+  }
+  .vh-25-nxl {
+    height: 25vh;
+  }
+  .vh-50-nxl {
+    height: 50vh;
+  }
+  .vh-75-nxl {
+    height: 75vh;
+  }
+  .vh-100-nxl {
+    height: 100vh;
+  }
+  .min-vh-100-nxl {
+    min-height: 100vh;
+  }
+  .terkui-h-auto-nxl {
+    height: auto;
+  }
+  .terkui-h-inherit-nxl {
+    height: inherit;
+  }
+}
+
+@media only screen and (min-width: var(--breakpoint-2xl)) {
+  .terkui-h1-n2xl {
+    height: 1rem;
+  }
+  .terkui-h2-n2xl {
+    height: 2rem;
+  }
+  .terkui-h3-n2xl {
+    height: 4rem;
+  }
+  .terkui-h4-n2xl {
+    height: 8rem;
+  }
+  .terkui-h5-n2xl {
+    height: 16rem;
+  }
+  .terkui-h-25-n2xl {
+    height: 25%;
+  }
+  .terkui-h-50-n2xl {
+    height: 50%;
+  }
+  .terkui-h-75-n2xl {
+    height: 75%;
+  }
+  .terkui-h-100-n2xl {
+    height: 100%;
+  }
+  .min-h-100-n2xl {
+    min-height: 100%;
+  }
+  .vh-25-n2xl {
+    height: 25vh;
+  }
+  .vh-50-n2xl {
+    height: 50vh;
+  }
+  .vh-75-n2xl {
+    height: 75vh;
+  }
+  .vh-100-n2xl {
+    height: 100vh;
+  }
+  .min-vh-100-n2xl {
+    min-height: 100vh;
+  }
+  .terkui-h-auto-n2xl {
+    height: auto;
+  }
+  .terkui-h-inherit-n2xl {
+    height: inherit;
+  }
+}
