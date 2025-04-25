@@ -20,7 +20,7 @@
   width: 100%;
 }
 
-/* @media (min-width: var(--breakpoint-xs)) {
+/* @media only screen and (min-width: var(--breakpoint-xs)) {
   .terkui-container-xs {
     max-width: var(--breakpoint-xs);
   }
@@ -30,7 +30,7 @@
     * For all with greater than sm, the width should will not exceed 540px
     * For with less than or equal to sm the width is 100%;
  */
-@media (min-width: var(--breakpoint-sm)) {
+@media only screen and (min-width: var(--breakpoint-sm)) {
   .terkui-container-sm {
     max-width: var(--breakpoint-max-width-sm);
   }
@@ -40,7 +40,7 @@
     * For all with greater than md, the width should will not exceed 720px
     * For with less than or equal to md the width is 100%;
  */
-@media (min-width: var(--breakpoint-md)) {
+@media only screen and (min-width: var(--breakpoint-md)) {
   .terkui-container-md {
     max-width: var(--breakpoint-max-width-md);
   }
@@ -50,7 +50,7 @@
     * For all with greater than lg, the width should will not exceed 960px
     * For with less than or equal to lg the width is 100%;
  */
-@media (min-width: var(--breakpoint-lg)) {
+@media only screen and (min-width: var(--breakpoint-lg)) {
   .terkui-container-lg {
     max-width: var(--breakpoint-max-width-lg);
   }
@@ -60,7 +60,7 @@
     * For all with greater than xl, the width should will not exceed 1140px
     * For with less than or equal to xl the width is 100%;
  */
-@media (min-width: var(--breakpoint-xl)) {
+@media only screen and (min-width: var(--breakpoint-xl)) {
   .terkui-container-xl {
     max-width: var(--breakpoint-max-width-xl);
   }
@@ -70,7 +70,7 @@
     * For all with greater than 2xl, the width should will not exceed 1320px;
     * For with less than or equal to 2xl the width is 100%;
  */
-@media (min-width: var(--breakpoint-2xl)) {
+@media only screen and (min-width: var(--breakpoint-2xl)) {
   .terkui-container-2xl {
     max-width: var(--breakpoint-max-width-2xl);
   }

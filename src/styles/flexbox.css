@@ -106,3 +106,201 @@
 .terkui-content-stretch {
   align-content: stretch;
 }
+
+.terkui-order-0 {
+  order: 0;
+}
+.terkui-order-1 {
+  order: 1;
+}
+.terkui-order-2 {
+  order: 2;
+}
+.terkui-order-3 {
+  order: 3;
+}
+.terkui-order-4 {
+  order: 4;
+}
+.terkui-order-5 {
+  order: 5;
+}
+.terkui-order-6 {
+  order: 6;
+}
+.terkui-order-7 {
+  order: 7;
+}
+.terkui-order-8 {
+  order: 8;
+}
+.terkui-order-last {
+  order: 99999;
+}
+
+.terkui-flex-grow-0 {
+  flex-grow: 0;
+}
+.terkui-flex-grow-1 {
+  flex-grow: 1;
+}
+
+.terkui-flex-shrink-0 {
+  flex-shrink: 0;
+}
+.terkui-flex-shrink-1 {
+  flex-shrink: 1;
+}
+
+/* 
+    * Perform action for all screen sizes greater than sm
+ */
+@media only screen and (min-width: var(--breakpoint-sm)) {
+  .terkui-flex-nsm {
+    display: flex;
+  }
+
+  .terkui-inline-flex-nsm {
+    display: inline-flex;
+  }
+  .terkui-flex-auto-nsm {
+    flex: 1 1 auto;
+    min-width: 0; /* 1 */
+    min-height: 0; /* 1 */
+  }
+  .terkui-flex-none-nsm {
+    flex: none;
+  }
+  .terkui-flex-column-nsm {
+    flex-direction: column;
+  }
+  .terkui-flex-row-nsm {
+    flex-direction: row;
+  }
+  .terkui-flex-wrap-nsm {
+    flex-wrap: wrap;
+  }
+  .terkui-flex-nowrap-nsm {
+    flex-wrap: nowrap;
+  }
+  .terkui-flex-wrap-reverse-nsm {
+    flex-wrap: wrap-reverse;
+  }
+  .terkui-flex-column-reverse-nsm {
+    flex-direction: column-reverse;
+  }
+  .terkui-flex-row-reverse-nsm {
+    flex-direction: row-reverse;
+  }
+  .terkui-items-start-nsm {
+    align-items: flex-start;
+  }
+  .terkui-items-end-nsm {
+    align-items: flex-end;
+  }
+  .terkui-items-center-nsm {
+    align-items: center;
+  }
+  .terkui-items-baseline-nsm {
+    align-items: baseline;
+  }
+  .terkui-items-stretch-nsm {
+    align-items: stretch;
+  }
+
+  .terkui-self-start-nsm {
+    align-self: flex-start;
+  }
+  .terkui-self-end-nsm {
+    align-self: flex-end;
+  }
+  .terkui-self-center-nsm {
+    align-self: center;
+  }
+  .terkui-self-baseline-nsm {
+    align-self: baseline;
+  }
+  .terkui-self-stretch-nsm {
+    align-self: stretch;
+  }
+
+  .terkui-justify-start-nsm {
+    justify-content: flex-start;
+  }
+  .terkui-justify-end-nsm {
+    justify-content: flex-end;
+  }
+  .terkui-justify-center-nsm {
+    justify-content: center;
+  }
+  .terkui-justify-between-nsm {
+    justify-content: space-between;
+  }
+  .terkui-justify-around-nsm {
+    justify-content: space-around;
+  }
+
+  .terkui-content-start-nsm {
+    align-content: flex-start;
+  }
+  .terkui-content-end-nsm {
+    align-content: flex-end;
+  }
+  .terkui-content-center-nsm {
+    align-content: center;
+  }
+  .terkui-content-between-nsm {
+    align-content: space-between;
+  }
+  .terkui-content-around-nsm {
+    align-content: space-around;
+  }
+  .terkui-content-stretch-nsm {
+    align-content: stretch;
+  }
+
+  .terkui-order-0-nsm {
+    order: 0;
+  }
+  .terkui-order-1-nsm {
+    order: 1;
+  }
+  .terkui-order-2-nsm {
+    order: 2;
+  }
+  .terkui-order-3-nsm {
+    order: 3;
+  }
+  .terkui-order-4-nsm {
+    order: 4;
+  }
+  .terkui-order-5-nsm {
+    order: 5;
+  }
+  .terkui-order-6-nsm {
+    order: 6;
+  }
+  .terkui-order-7-nsm {
+    order: 7;
+  }
+  .terkui-order-8-nsm {
+    order: 8;
+  }
+  .terkui-order-last-nsm {
+    order: 99999;
+  }
+
+  .terkui-flex-grow-0-nsm {
+    flex-grow: 0;
+  }
+  .terkui-flex-grow-1-nsm {
+    flex-grow: 1;
+  }
+
+  .terkui-flex-shrink-0-nsm {
+    flex-shrink: 0;
+  }
+  .terkui-flex-shrink-1-nsm {
+    flex-shrink: 1;
+  }
+}
