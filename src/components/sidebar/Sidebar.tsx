@@ -8,9 +8,10 @@ import {
   useState,
 } from "react";
 import { Transition } from "react-transition-group";
-import { sidebarTheme } from "./theme";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { IDefaultStyle, ITransitionStyle } from "./types";
+import { ITransitionStyle } from "./types";
+
+import "./styles.css";
 
 interface ISidebar {
   isClose: boolean;
@@ -28,6 +29,7 @@ interface ISidebar {
     };
   };
   themeMode?: "dark" | "light";
+  size?: "sm" | "lg" | "xl";
   width?: number;
   className?: string;
   handleClose?: () => void;
@@ -37,44 +39,16 @@ interface ISidebar {
     props,
   }: {
     ref?: RefObject<HTMLDivElement | null> | Ref<HTMLDivElement | null>;
-    style: IDefaultStyle;
+    style: {
+      opacity: number;
+      transform?: string;
+    };
     props?: Record<string, unknown>;
+    classes?: string[];
   }) => ReactElement;
 }
-const Sidebar: FC<ISidebar> = (
-  props = {
-    isClose: false,
-    timeout: 150,
-    theme: sidebarTheme,
-    width: 350,
-    themeMode: "dark",
-  }
-) => {
+const Sidebar: FC<ISidebar> = (props) => {
   const [isClose, setClose] = useState(props.isClose);
-  const defaultStyle: IDefaultStyle = {
-    position: "fixed",
-    top: "0",
-    left: "0",
-    bottom: "0",
-    zIndex: 1030,
-    order: -1,
-    opacity: 1,
-    display: "flex",
-    flex: `0 0 ${props.width}px`,
-    flexDirection: "column",
-    width: `${props.width}px`,
-    transition: ".3s ease-out",
-    color: `${
-      props.theme?.sidebar
-        ? props.theme?.sidebar[props.themeMode || "light"].color
-        : ""
-    }`,
-    backgroundColor: `${
-      props.theme?.sidebar
-        ? props.theme.sidebar[props.themeMode || "light"].backgroundColor
-        : ""
-    }`,
-  };
 
   const transitionStyles: ITransitionStyle = {
     entering: { opacity: 1, transform: `translateX(-${props.width}px)` },
@@ -83,6 +57,7 @@ const Sidebar: FC<ISidebar> = (
     exited: { opacity: 1 },
   };
 
+  console.log("props____", props);
   useEffect(() => {
     if (props.isClose !== isClose) {
       setClose(props.isClose);
@@ -93,15 +68,23 @@ const Sidebar: FC<ISidebar> = (
     | RefObject<HTMLDivElement | null>
     | Ref<HTMLDivElement | null> = useRef(null);
   useClickOutside(sidebarRef, props.handleClose);
+
+  const classes = [
+    "terkui-sidebar",
+    `terkui-sidebar-size-${props.size}`,
+    `terkui-sidebar-theme-${props.themeMode}`,
+  ];
+
   return (
-    <Transition in={isClose} timeout={props.timeout || 150}>
+    <Transition in={isClose} timeout={props.timeout || 150} nodeRef={sidebarRef}>
       {(state, childProps) => {
+        console.log("state____", state);
         const children = props?.renderChildren
           ? props.renderChildren({
               style: {
-                ...defaultStyle,
                 ...transitionStyles[state],
               },
+              classes,
               ref: sidebarRef,
               ...childProps,
             })

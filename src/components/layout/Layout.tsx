@@ -1,30 +1,58 @@
-import { FC, HTMLAttributes, ReactNode, Ref, RefObject, useState } from "react";
+import { FC, ReactNode, Ref, RefObject, useState } from "react";
 import { Container } from "../container/Container";
 import Sidebar from "../sidebar/Sidebar";
 import { sidebarTheme } from "../sidebar/theme";
+import classnames from "classnames";
+
+import "./style.css";
 
 export interface ILayout {
   children?: ReactNode;
+  toggleSidebar?: () => void;
 }
 export const Layout: FC<ILayout> = ({ children }) => {
   const [isClose, setClose] = useState(false);
+  const handleToggleSidebar = () => {
+    setClose(!isClose);
+  };
   return (
-    <>
+    <div
+      // className="terkui-layout-wrapper"
+      style={{
+        display: "flex",
+        width: "100%",
+        overflow: "hidden",
+      }}
+    >
       <Sidebar
         width={350}
         theme={sidebarTheme}
         themeMode="dark"
+        size="sm"
         isClose={isClose}
-        handleClose={() => {
-          setClose(!isClose);
-        }}
+        // handleClose={handleToggleSidebar}
         renderChildren={(props: {
           ref?: RefObject<HTMLDivElement | null> | Ref<HTMLDivElement | null>;
-          style: HTMLAttributes<HTMLDivElement>;
+          // style: HTMLAttributes<HTMLDivElement>;
+          style: {
+            opacity: number;
+            transform?: string;
+          };
           props?: Record<string, unknown>;
+          classes?: string[];
         }) => {
           return (
-            <div style={{ ...props.style }} ref={props.ref}>
+            <div
+              className={classnames(props.classes || [""])}
+              style={{
+                ...props.style,
+                height: "100vh",
+                overflowX: "hidden",
+                overflowY: "auto",
+                padding: "0.5rem"
+              }}
+              ref={props.ref}
+            >
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Phasellus tortor neque, vehicula sit amet odio quis, dictum
@@ -160,15 +188,19 @@ export const Layout: FC<ILayout> = ({ children }) => {
           );
         }}
       />
-      <div className="terkui-flex terkui-flex-column terkui-min-vh-100">
-        {/* <AppHeader /> */}
-        <div className="terkui-flex-grow-1 px-3">
-          <Container breakpoint="lg">{children}</Container>
+      <main className="main" style={{ width: "100%" }}>
+        <div className="terkui-flex terkui-flex-column terkui-min-vh-100">
+          {/* <AppHeader /> */}
+          <div className="terkui-flex-grow-1 px-3">
+            <button onClick={handleToggleSidebar}>Toogle sidebar</button>
+            <Container breakpoint="lg">{children}</Container>
+          </div>
+          {/* <AppFooter /> */}
         </div>
-        {/* <AppFooter /> */}
-      </div>
+      </main>
+
       {/* <AppAside /> */}
-    </>
+    </div>
   );
 };
 

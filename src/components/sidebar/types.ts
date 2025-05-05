@@ -4,9 +4,7 @@ export interface IDefaultStyle {
   left: string;
   bottom: string;
   zIndex: number;
-  order: number;
   display: string;
-  flex: string;
   flexDirection: string;
   width: string;
   transition: string;

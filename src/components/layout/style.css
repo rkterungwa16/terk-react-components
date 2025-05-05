@@ -1,0 +1,28 @@
+.terkui-layout-wrapper {
+  flex: 1 1;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  /* grid-auto-rows: max-content auto; */
+  /* position: relative; */
+  width: 100%;
+}
+
+.check {
+  flex: 1 1;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-auto-rows: max-content auto;
+  position: relative;
+}
+
+.main {
+  /* grid-column: 2 / span 1; */
+  padding: 1rem;
+  overflow-x: hidden;
+}
+
+@media (min-aspect-ratio: 0.8 / 1) and (min-width: 1000px) {
+  main {
+    grid-row: 1 / span 2;
+  }
+}
