@@ -57,7 +57,6 @@ const Sidebar: FC<ISidebar> = (props) => {
     exited: { opacity: 1 },
   };
 
-  console.log("props____", props);
   useEffect(() => {
     if (props.isClose !== isClose) {
       setClose(props.isClose);
@@ -71,14 +70,13 @@ const Sidebar: FC<ISidebar> = (props) => {
 
   const classes = [
     "terkui-sidebar",
-    `terkui-sidebar-size-${props.size}`,
+    ...(!isClose ? [`terkui-sidebar-size-${props.size}`] : ["terkui-sidebar-w-0"]),
     `terkui-sidebar-theme-${props.themeMode}`,
   ];
 
   return (
     <Transition in={isClose} timeout={props.timeout || 150} nodeRef={sidebarRef}>
       {(state, childProps) => {
-        console.log("state____", state);
         const children = props?.renderChildren
           ? props.renderChildren({
               style: {

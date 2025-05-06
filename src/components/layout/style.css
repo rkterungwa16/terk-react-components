@@ -22,7 +22,7 @@
 }
 
 @media (min-aspect-ratio: 0.8 / 1) and (min-width: 1000px) {
-  main {
+  /* main {
     grid-row: 1 / span 2;
-  }
+  } */
 }
