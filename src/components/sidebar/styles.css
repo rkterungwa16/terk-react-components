@@ -3,7 +3,7 @@
 }
 
 .terkui-sidebar {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   transition: 0.15s ease-out;
+  margin-left: 0;
 }
 
 .terkui-sidebar-w-0 {

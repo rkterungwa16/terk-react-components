@@ -51,12 +51,21 @@ const Sidebar: FC<ISidebar> = (props) => {
   const [isClose, setClose] = useState(props.isClose);
 
   const transitionStyles: ITransitionStyle = {
-    entering: { opacity: 1, transform: `translateX(-${props.width}px)` },
-    entered: { opacity: 1, transform: `translateX(-${props.width}px)` },
+    entering: {
+      opacity: 1,
+      transform: `translateX(-${props.width}px)`,
+      // marginLeft: `-${props.width}px`,
+    },
+    entered: {
+      opacity: 1,
+      transform: `translateX(-${props.width}px)`,
+      // marginLeft: `-${props.width}px`,
+    },
     exiting: { opacity: 1 },
     exited: { opacity: 1 },
   };
 
+  console.log('transition styles____', transitionStyles)
   useEffect(() => {
     if (props.isClose !== isClose) {
       setClose(props.isClose);
@@ -70,12 +79,17 @@ const Sidebar: FC<ISidebar> = (props) => {
 
   const classes = [
     "terkui-sidebar",
-    ...(!isClose ? [`terkui-sidebar-size-${props.size}`] : ["terkui-sidebar-w-0"]),
+    // ...(!isClose ? [`terkui-sidebar-size-${props.size}`] : ["terkui-sidebar-w-0"]),
+    `terkui-sidebar-size-${props.size}`,
     `terkui-sidebar-theme-${props.themeMode}`,
   ];
 
   return (
-    <Transition in={isClose} timeout={props.timeout || 150} nodeRef={sidebarRef}>
+    <Transition
+      in={isClose}
+      timeout={props.timeout || 150}
+      nodeRef={sidebarRef}
+    >
       {(state, childProps) => {
         const children = props?.renderChildren
           ? props.renderChildren({

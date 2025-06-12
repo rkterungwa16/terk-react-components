@@ -18,14 +18,17 @@ export interface ITransitionStyle {
   [key: string]: {
     opacity: number;
     transform?: string;
+    marginLeft?: string;
   };
   entering: {
     opacity: number;
-    transform: string;
+    transform?: string;
+    marginLeft?: string;
   };
   entered: {
     opacity: number;
-    transform: string;
+    transform?: string;
+    marginLeft?: string;
   };
   exiting: {
     opacity: number;
