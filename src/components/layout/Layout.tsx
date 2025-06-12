@@ -56,6 +56,7 @@ export const Layout: FC<ILayout> = ({ children }) => {
                  * the padding added to that element will be added to the total width of the element.
                  * You will see the effect of this as the sidebar extends into the main content area.
                  * This behaviour occurs for the css property box-sizing: content-box;
+                 * https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
                  */
                 padding: "0.5rem",
               }}
