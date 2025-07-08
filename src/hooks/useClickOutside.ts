@@ -2,7 +2,7 @@ import { RefObject, useEffect } from "react";
 
 export function useClickOutside(
   ref: RefObject<HTMLElement | null>,
-  action: (() => void) | undefined
+  action?: () => void
 ) {
   useEffect(() => {
     function handleClickOutside() {

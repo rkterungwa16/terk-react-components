@@ -12,6 +12,8 @@ import { useClickOutside } from "../../hooks/useClickOutside";
 import { ITransitionStyle } from "./types";
 
 import "./styles.css";
+import { useCurrentBreakpoint } from "../../hooks/useCurrentBreakpoint";
+import { sizes } from "./constants";
 
 interface ISidebar {
   isClose: boolean;
@@ -32,6 +34,8 @@ interface ISidebar {
   size?: "sm" | "lg" | "xl";
   width?: number;
   className?: string;
+  visible?: boolean;
+  containerRef?: RefObject<HTMLDivElement | HTMLElement | null>;
   handleClose?: () => void;
   renderChildren?: ({
     ref,
@@ -43,12 +47,15 @@ interface ISidebar {
       opacity: number;
       transform?: string;
     };
+    isClose?: boolean;
     props?: Record<string, unknown>;
     classes?: string[];
   }) => ReactElement;
 }
 const Sidebar: FC<ISidebar> = (props) => {
   const [isClose, setClose] = useState(props.isClose);
+  const [visible, setVisible] = useState(true);
+  const breakpoint = useCurrentBreakpoint();
 
   const transitionStyles: ITransitionStyle = {
     entering: {
@@ -65,16 +72,38 @@ const Sidebar: FC<ISidebar> = (props) => {
     exited: { opacity: 1 },
   };
 
-  console.log('transition styles____', transitionStyles)
   useEffect(() => {
-    if (props.isClose !== isClose) {
+    if (["sm", "md"].includes(breakpoint as string)) {
+      setVisible(false);
+    } else {
+      setVisible(true);
+    }
+  }, [breakpoint, visible]);
+
+  useEffect(() => {
+    if (props?.containerRef && props.containerRef?.current) {
+      props.containerRef.current.style = `${
+        isClose ? "margin-left: 0rem;" : `margin-left: ${sizes["xl"]}rem`
+      }`;
+    }
+  }, [props, props.containerRef, isClose]);
+
+  /**
+   * If screen size is a tab (md) close the fixed-width side bar. But user can open sidebar with overlay
+   */
+  useEffect(() => {
+    if (visible) {
       setClose(props.isClose);
     }
-  }, [props.isClose, isClose]);
+    if (!visible) {
+      setClose(true);
+    }
+  }, [isClose, props.isClose, visible, props]);
 
   const sidebarRef:
     | RefObject<HTMLDivElement | null>
     | Ref<HTMLDivElement | null> = useRef(null);
+
   useClickOutside(sidebarRef, props.handleClose);
 
   const classes = [
@@ -99,6 +128,7 @@ const Sidebar: FC<ISidebar> = (props) => {
               classes,
               ref: sidebarRef,
               ...childProps,
+              isClose,
             })
           : null;
         return children;

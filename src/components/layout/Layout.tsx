@@ -1,11 +1,10 @@
-import { FC, ReactNode, Ref, RefObject, useState } from "react";
+import { FC, ReactNode, Ref, RefObject, useRef, useState } from "react";
 import { Container } from "../container/Container";
 import Sidebar from "../sidebar/Sidebar";
 import { sidebarTheme } from "../sidebar/theme";
 import classnames from "classnames";
 
 import "./style.css";
-import { sizes } from "../sidebar/constants";
 
 export interface ILayout {
   children?: ReactNode;
@@ -13,26 +12,20 @@ export interface ILayout {
 }
 export const Layout: FC<ILayout> = ({ children }) => {
   const [isClose, setClose] = useState(false);
+  const containerRef = useRef<HTMLDivElement | HTMLElement | null>(null);
   const handleToggleSidebar = () => {
     setClose(!isClose);
   };
   return (
-    <div
-      // className="terkui-layout-wrapper"
-      className="wrapper"
-      // style={{
-      //   display: "flex",
-      //   width: "100%",
-      //   overflow: "hidden",
-      // }}
-    >
+    <div className="wrapper">
       <Sidebar
         width={350}
         theme={sidebarTheme}
         themeMode="dark"
         size="xl"
         isClose={isClose}
-        // handleClose={handleToggleSidebar}
+        handleClose={handleToggleSidebar}
+        containerRef={containerRef}
         renderChildren={(props: {
           ref?: RefObject<HTMLDivElement | null> | Ref<HTMLDivElement | null>;
           // style: HTMLAttributes<HTMLDivElement>;
@@ -40,9 +33,11 @@ export const Layout: FC<ILayout> = ({ children }) => {
             opacity: number;
             transform?: string;
           };
+          isClose?: boolean;
           props?: Record<string, unknown>;
           classes?: string[];
         }) => {
+          // setClose(props.isClose || false)
           return (
             <div
               className={classnames(props.classes || [""])}
@@ -71,14 +66,7 @@ export const Layout: FC<ILayout> = ({ children }) => {
           );
         }}
       />
-      <main
-        className="content"
-        style={{
-          ...(isClose
-            ? { marginLeft: "0rem" }
-            : { marginLeft: `${sizes["xl"]}rem` }),
-        }}
-      >
+      <main ref={containerRef} className="content">
         <div className="terkui-flex terkui-flex-column terkui-min-vh-100">
           {/* <AppHeader /> */}
           <div className="terkui-flex-grow-1 px-3">
