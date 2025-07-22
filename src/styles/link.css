@@ -1,0 +1,27 @@
+.terkui-link {
+  text-decoration: none;
+  transition: color 0.15s ease-in;
+}
+
+.terkui-link:link,
+.terkui-link:visited {
+  transition: color 0.15s ease-in;
+}
+.terkui-link:hover {
+  transition: color 0.15s ease-in;
+}
+.terkui-link:active {
+  transition: color 0.15s ease-in;
+}
+.terkui-link:focus {
+  transition: color 0.15s ease-in;
+  outline: 1px dotted currentColor;
+}
+
+.terkui-link-underline {
+  text-decoration: underline;
+}
+
+.textui-link-noline {
+  text-decoration: none;
+}
