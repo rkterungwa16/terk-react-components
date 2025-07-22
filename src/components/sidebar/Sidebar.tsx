@@ -82,9 +82,9 @@ const Sidebar: FC<ISidebar> = (props) => {
 
   useEffect(() => {
     if (props?.containerRef && props.containerRef?.current) {
-      props.containerRef.current.style = `${
-        isClose ? "margin-left: 0rem;" : `margin-left: ${sizes["xl"]}rem`
-      }`;
+      props.containerRef.current.style.marginLeft = isClose
+        ? "0rem"
+        : `${sizes["xl"]}rem`;
     }
   }, [props, props.containerRef, isClose]);
 
