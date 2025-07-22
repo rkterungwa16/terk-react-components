@@ -25,6 +25,7 @@ When the `active` prop is set to `true`, the component adds the `aria-current="p
 ### Disabled State
 
 When the `disabled` prop is set to `true`, the component:
+
 - Adds `aria-disabled="true"` to indicate the disabled state to assistive technologies
 - Sets `tabIndex="-1"` to remove the element from the tab order
 - Prevents click events from firing by intercepting and stopping the event propagation
@@ -33,6 +34,7 @@ When the `disabled` prop is set to `true`, the component:
 ### Event Handling
 
 The component properly handles all standard DOM events. For the `onClick` event specifically:
+
 - If the link is disabled, the event is prevented from firing
 - If the link is enabled, the event passes through normally
 
