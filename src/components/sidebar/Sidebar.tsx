@@ -35,8 +35,9 @@ interface ISidebar {
   width?: number;
   className?: string;
   visible?: boolean;
-  containerRef?: RefObject<HTMLDivElement | HTMLElement | null>;
-  handleClose?: () => void;
+  mainContainerRef: RefObject<HTMLDivElement | HTMLElement | null>;
+  sidebarContainerRef?: RefObject<HTMLDivElement | HTMLElement | null>;
+  handleClose?: (close: boolean) => () => void;
   renderChildren?: ({
     ref,
     style,
@@ -54,7 +55,10 @@ interface ISidebar {
 }
 const Sidebar: FC<ISidebar> = (props) => {
   const [isClose, setClose] = useState(props.isClose);
-  const [visible, setVisible] = useState(true);
+  const [mobile, setMobile] = useState(true);
+  const sidebarContainerRef:
+    | RefObject<HTMLDivElement | null>
+    | Ref<HTMLDivElement | null> = useRef(null);
   const breakpoint = useCurrentBreakpoint();
 
   const transitionStyles: ITransitionStyle = {
@@ -74,37 +78,36 @@ const Sidebar: FC<ISidebar> = (props) => {
 
   useEffect(() => {
     if (["sm", "md"].includes(breakpoint as string)) {
-      setVisible(false);
+      setMobile(true);
     } else {
-      setVisible(true);
+      setMobile(false);
     }
-  }, [breakpoint, visible]);
+  }, [breakpoint, mobile]);
 
   useEffect(() => {
-    if (props?.containerRef && props.containerRef?.current) {
-      props.containerRef.current.style.marginLeft = isClose
-        ? "0rem"
-        : `${sizes["xl"]}rem`;
+    if (props?.mainContainerRef && props.mainContainerRef?.current) {
+      if (mobile) {
+        props.mainContainerRef.current.style.marginLeft = "0rem";
+      } else if (!mobile) {
+        props.mainContainerRef.current.style.marginLeft = isClose
+          ? "0rem"
+          : `${sizes["xl"]}rem`;
+      }
     }
-  }, [props, props.containerRef, isClose]);
+  }, [props, props.mainContainerRef, mobile, isClose]);
 
   /**
    * If screen size is a tab (md) close the fixed-width side bar. But user can open sidebar with overlay
    */
   useEffect(() => {
-    if (visible) {
-      setClose(props.isClose);
-    }
-    if (!visible) {
-      setClose(true);
-    }
-  }, [isClose, props.isClose, visible, props]);
+    setClose(props.isClose);
+  }, [props.isClose, props]);
 
-  const sidebarRef:
-    | RefObject<HTMLDivElement | null>
-    | Ref<HTMLDivElement | null> = useRef(null);
-
-  useClickOutside(sidebarRef, props.handleClose);
+  useClickOutside({
+    sidebarContainerRef,
+    action: props.handleClose?.(isClose),
+    mainContainerRef: props.mainContainerRef,
+  });
 
   const classes = [
     "terkui-sidebar",
@@ -117,7 +120,7 @@ const Sidebar: FC<ISidebar> = (props) => {
     <Transition
       in={isClose}
       timeout={props.timeout || 150}
-      nodeRef={sidebarRef}
+      nodeRef={sidebarContainerRef}
     >
       {(state, childProps) => {
         const children = props?.renderChildren
@@ -126,7 +129,7 @@ const Sidebar: FC<ISidebar> = (props) => {
                 ...transitionStyles[state],
               },
               classes,
-              ref: sidebarRef,
+              ref: sidebarContainerRef,
               ...childProps,
               isClose,
             })

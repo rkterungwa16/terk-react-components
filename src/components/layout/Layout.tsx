@@ -1,4 +1,4 @@
-import { FC, ReactNode, Ref, RefObject, useRef, useState } from "react";
+import { FC, ReactNode, Ref, RefObject, useCallback, useRef, useState } from "react";
 import { Container } from "../container/Container";
 import Sidebar from "../sidebar/Sidebar";
 import { sidebarTheme } from "../sidebar/theme";
@@ -13,9 +13,18 @@ export interface ILayout {
 export const Layout: FC<ILayout> = ({ children }) => {
   const [isClose, setClose] = useState(false);
   const containerRef = useRef<HTMLDivElement | HTMLElement | null>(null);
-  const handleToggleSidebar = () => {
-    setClose(!isClose);
-  };
+  const handleToggleSidebar = useCallback((close: boolean) => {
+    return () => {
+      setClose(!close);
+    };
+  }, []);
+
+  const handleOnclick = useCallback((close: boolean) => {
+    return () => {
+      setClose(!close);
+    };
+  }, []);
+
   return (
     <div className="wrapper">
       <Sidebar
@@ -25,7 +34,7 @@ export const Layout: FC<ILayout> = ({ children }) => {
         size="xl"
         isClose={isClose}
         handleClose={handleToggleSidebar}
-        containerRef={containerRef}
+        mainContainerRef={containerRef}
         renderChildren={(props: {
           ref?: RefObject<HTMLDivElement | null> | Ref<HTMLDivElement | null>;
           // style: HTMLAttributes<HTMLDivElement>;
@@ -37,7 +46,6 @@ export const Layout: FC<ILayout> = ({ children }) => {
           props?: Record<string, unknown>;
           classes?: string[];
         }) => {
-          // setClose(props.isClose || false)
           return (
             <div
               className={classnames(props.classes || [""])}
@@ -70,7 +78,7 @@ export const Layout: FC<ILayout> = ({ children }) => {
         <div className="terkui-flex terkui-flex-column terkui-min-vh-100">
           {/* <AppHeader /> */}
           <div className="terkui-flex-grow-1 px-3">
-            <button onClick={handleToggleSidebar}>Toogle sidebar</button>
+            <button onClick={handleOnclick(isClose)}>Toogle sidebar</button>
             <Container breakpoint="lg">{children}</Container>
           </div>
           {/* <AppFooter /> */}

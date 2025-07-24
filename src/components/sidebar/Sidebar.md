@@ -25,8 +25,9 @@ The `Sidebar` component provides a collapsible, responsive side navigation panel
 | `width` | number | undefined | Custom width in pixels (overrides size) |
 | `className` | string | undefined | Additional CSS class(es) |
 | `visible` | boolean | undefined | Controls visibility independently of isClose |
-| `containerRef` | RefObject | undefined | Reference to container element for margin adjustment |
-| `handleClose` | () => void | undefined | Callback when clicking outside the sidebar |
+| `mainContainerRef` | RefObject | Required | Reference to main content container for margin adjustment |
+| `sidebarContainerRef` | RefObject | undefined | Reference to sidebar container element (if not provided, an internal ref is used) |
+| `handleClose` | (close: boolean) => () => void | undefined | Callback factory that receives current closed state and returns click handler |
 | `renderChildren` | function | undefined | Render prop function for sidebar content |
 
 ### renderChildren Function
@@ -72,14 +73,19 @@ The component uses React Transition Group to handle smooth animations with four 
 
 ### Container Margin Adjustment
 
-When a `containerRef` is provided, the component will automatically adjust the margin of the referenced container element to accommodate the sidebar:
+The component uses `mainContainerRef` to automatically adjust the margin of the main content to accommodate the sidebar:
 
-- When sidebar is open: Container margin is adjusted to the sidebar width
-- When sidebar is closed: Container margin is reset to 0
+- On desktop screens (lg, xl, 2xl breakpoints):
+  - When sidebar is open: Main container margin is adjusted to the sidebar width
+  - When sidebar is closed: Main container margin is reset to 0
+- On mobile screens (sm, md breakpoints):
+  - Main container margin is always 0, regardless of sidebar state
 
 ### Click Outside Detection
 
-When a `handleClose` prop is provided, clicking outside the sidebar will trigger this callback, typically used to close the sidebar.
+The sidebar uses the `useClickOutside` hook to detect clicks on the main container element. When a `handleClose` prop is provided, clicking outside the sidebar will trigger this callback, typically used to close the sidebar.
+
+The `handleClose` function receives the current `isClose` state and should return a callback function that will be executed when clicking outside.
 
 ## Usage Examples
 
@@ -104,8 +110,8 @@ function App() {
         size="lg"
         themeMode="light"
         width={240}
-        containerRef={containerRef}
-        handleClose={() => setIsOpen(false)}
+        mainContainerRef={containerRef}
+        handleClose={(isClose) => () => setIsOpen(!isClose)}
         renderChildren={({ ref, style, classes }) => (
           <div ref={ref} className={classes?.join(' ')} style={style}>
             <h2>Sidebar</h2>
@@ -156,6 +162,7 @@ function ThemedSidebar() {
       themeMode="dark"
       theme={customTheme}
       size="xl"
+      mainContainerRef={containerRef}
       renderChildren={({ ref, style, classes }) => (
         <div ref={ref} className={classes?.join(' ')} style={style}>
           Themed Sidebar Content
@@ -168,8 +175,8 @@ function ThemedSidebar() {
 
 ## Best Practices
 
-1. **Container Reference**: Always provide a `containerRef` when you want the main content to shift with the sidebar
-2. **Click Outside Handling**: Implement `handleClose` for mobile-friendly interaction
+1. **Main Container Reference**: Always provide a `mainContainerRef` as it's required for the sidebar to function properly
+2. **Click Outside Handling**: Implement `handleClose` with the correct signature for mobile-friendly interaction
 3. **Accessibility**: Ensure your rendered content includes proper ARIA attributes for navigation
 4. **Responsive Design**: Test the sidebar at different breakpoints to ensure proper behavior
 5. **Performance**: Avoid heavy computations in the `renderChildren` function as it may be called multiple times during transitions
