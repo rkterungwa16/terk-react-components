@@ -2,7 +2,7 @@ import { render, screen, act, cleanup } from "@testing-library/react";
 import { createRef, ReactElement, RefObject, Ref } from "react";
 import Sidebar from "./Sidebar";
 import { jest } from "@jest/globals";
-import { Overlay } from "../overlay/Overlay";
+import type { OverlayProps } from "../overlay/Overlay";
 
 // Mock the hooks
 jest.mock("../../hooks/useCurrentBreakpoint", () => ({
@@ -19,6 +19,11 @@ jest.mock("../overlay/Overlay", () => {
   const MockOverlay = jest.fn(() => <div data-testid="mock-overlay" />);
   return { Overlay: MockOverlay };
 });
+
+// Get typed access to the mocked Overlay component
+const { Overlay } = jest.requireMock("../overlay/Overlay") as {
+  Overlay: jest.MockedFunction<React.FC<OverlayProps>>;
+};
 
 // We need to manually mock the Transition component from react-transition-group
 jest.mock("react-transition-group", () => {
@@ -67,7 +72,7 @@ describe("Sidebar Component", () => {
     defaultProps.mainContainerRef.current = div;
 
     // Reset mocks
-    (Overlay as jest.Mock).mockClear();
+    Overlay.mockClear();
   });
 
   afterEach(() => {
@@ -244,7 +249,7 @@ describe("Sidebar Component", () => {
 
   test("adjusts margin in desktop view and doesn't show overlay", () => {
     // Clear previous calls to Overlay
-    (Overlay as jest.Mock).mockClear();
+    Overlay.mockClear();
 
     const mockUseCurrentBreakpoint = (
       jest.requireMock("../../hooks/useCurrentBreakpoint") as {
