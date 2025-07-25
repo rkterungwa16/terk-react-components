@@ -1,23 +1,57 @@
+.terkui-transition-ease-xs {
+  transition: var(--timeout-xs) ease;
+}
+.terkui-transition-ease-sm {
+  transition: var(--timeout-sm) ease;
+}
+.terkui-transition-ease-md {
+  transition: var(--timeout-md) ease;
+}
+.terkui-transition-ease-lg {
+  transition: var(--timeout-lg) ease;
+}
+.terkui-transition-ease-xl {
+  transition: var(--timeout-xl) ease;
+}
+.terkui-transition-ease-2xl {
+  transition: var(--timeout-2xl) ease;
+}
+
 .terkui-transition-easeout-xs {
   transition: var(--timeout-xs) ease-out;
 }
-
 .terkui-transition-easeout-sm {
   transition: var(--timeout-sm) ease-out;
 }
-
 .terkui-transition-easeout-md {
   transition: var(--timeout-md) ease-out;
 }
-
 .terkui-transition-easeout-lg {
   transition: var(--timeout-lg) ease-out;
 }
-
 .terkui-transition-easeout-xl {
   transition: var(--timeout-xl) ease-out;
 }
-
 .terkui-transition-easeout-2xl {
   transition: var(--timeout-2xl) ease-out;
 }
+
+.terkui-transition-easein-xs {
+  transition: var(--timeout-xs) ease-in;
+}
+.terkui-transition-easein-sm {
+  transition: var(--timeout-sm) ease-in;
+}
+.terkui-transition-easein-md {
+  transition: var(--timeout-md) ease-in;
+}
+.terkui-transition-easein-lg {
+  transition: var(--timeout-lg) ease-in;
+}
+.terkui-transition-easein-xl {
+  transition: var(--timeout-xl) ease-in;
+}
+.terkui-transition-easein-2xl {
+  transition: var(--timeout-2xl) ease-in;
+}
+

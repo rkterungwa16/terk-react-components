@@ -13,7 +13,8 @@ import { ITransitionStyle } from "./types";
 
 import "./styles.css";
 import { useCurrentBreakpoint } from "../../hooks/useCurrentBreakpoint";
-import { sizes, timeouts } from "./constants";
+import { sidebarSizes, timeouts } from "../../utils/constants";
+import { Overlay } from "../overlay/Overlay";
 
 interface ISidebar {
   isClose: boolean;
@@ -91,7 +92,7 @@ const Sidebar: FC<ISidebar> = (props) => {
       } else if (!mobile) {
         props.mainContainerRef.current.style.marginLeft = isClose
           ? "0rem"
-          : `${sizes["xl"]}rem`;
+          : `${sidebarSizes["xl"]}rem`;
       }
     }
   }, [props, props.mainContainerRef, mobile, isClose]);
@@ -114,30 +115,46 @@ const Sidebar: FC<ISidebar> = (props) => {
     // ...(!isClose ? [`terkui-sidebar-size-${props.size}`] : ["terkui-sidebar-w-0"]),
     `terkui-sidebar-size-${props.size}`,
     `terkui-sidebar-theme-${props.themeMode}`,
-    `terkui-transition-easeout-${timeouts[props.timeout || 150]}`
+    `terkui-transition-ease-${timeouts[props.timeout || 150]}`,
   ];
 
+  const renderSidebarOverlay = () => {
+    if (mobile) {
+      return (
+        <Overlay
+          visible={isClose ? false : true}
+          animation="fadein"
+          timeout={props.timeout}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
-    <Transition
-      in={isClose}
-      timeout={props.timeout || 150}
-      nodeRef={sidebarContainerRef}
-    >
-      {(state, childProps) => {
-        const children = props?.renderChildren
-          ? props.renderChildren({
-              style: {
-                ...transitionStyles[state],
-              },
-              classes,
-              ref: sidebarContainerRef,
-              ...childProps,
-              isClose,
-            })
-          : null;
-        return children;
-      }}
-    </Transition>
+    <>
+      <Transition
+        in={isClose}
+        timeout={props.timeout || 150}
+        nodeRef={sidebarContainerRef}
+      >
+        {(state, childProps) => {
+          const children = props?.renderChildren
+            ? props.renderChildren({
+                style: {
+                  ...transitionStyles[state],
+                },
+                classes,
+                ref: sidebarContainerRef,
+                ...childProps,
+                isClose,
+              })
+            : null;
+          return children;
+        }}
+      </Transition>
+      {renderSidebarOverlay()}
+    </>
   );
 };
 

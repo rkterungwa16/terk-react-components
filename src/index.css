@@ -3,6 +3,8 @@
 @import "./styles/height.css";
 @import "./styles/transition.css";
 @import "./styles/link.css";
+@import "./styles/animation.css";
+@import "./styles/opacity.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

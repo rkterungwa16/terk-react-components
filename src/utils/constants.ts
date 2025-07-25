@@ -1,4 +1,4 @@
-export const sizes = {
+export const sidebarSizes = {
   sm: 16,
   lg: 18,
   xl: 20

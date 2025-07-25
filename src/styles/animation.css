@@ -1,0 +1,59 @@
+.terkui-animation-fadein-xs {
+  animation: fadeIn var(--timeout-xs) ease-in;
+}
+.terkui-animation-fadein-sm {
+  animation: fadeIn var(--timeout-sm) ease-in;
+}
+.terkui-animation-fadein-md {
+  animation: fadeIn var(--timeout-md) ease-in;
+}
+.terkui-animation-fadein-lg {
+  animation: fadeIn var(--timeout-lg) ease-in;
+}
+.terkui-animation-fadein-xl {
+  animation: fadeIn var(--timeout-xl) ease-in;
+}
+.terkui-animation-fadein-xl {
+  animation: fadeIn var(--timeout-xl) ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.terkui-animation-fadeout-xs {
+  animation: fadeOut var(--timeout-xs) ease-out;
+}
+
+.terkui-animation-fadeout-sm {
+  animation: fadeOut var(--timeout-sm) ease-out;
+}
+
+.terkui-animation-fadeout-md {
+  animation: fadeOut var(--timeout-md) ease-out;
+}
+.terkui-animation-fadeout-lg {
+  animation: fadeOut var(--timeout-lg) ease-out;
+}
+.terkui-animation-fadeout-xl {
+  animation: fadeOut var(--timeout-xl) ease-out;
+}
+.terkui-animation-fadeout-2xl {
+  animation: fadeOut var(--timeout-2xl) ease-out;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

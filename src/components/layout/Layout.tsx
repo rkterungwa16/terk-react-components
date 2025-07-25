@@ -4,7 +4,7 @@ import Sidebar from "../sidebar/Sidebar";
 import { sidebarTheme } from "../sidebar/theme";
 import classnames from "classnames";
 
-import "./style.css";
+import "./styles.css";
 
 export interface ILayout {
   children?: ReactNode;

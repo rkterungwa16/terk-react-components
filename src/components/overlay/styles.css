@@ -1,5 +1,5 @@
 .terkui-overlay {
-  animation: fadeIn --timeout-xs ease-out;
+  animation: fadeIn var(--timeout-xs) ease-out;
   position: absolute;
   top: 0;
   left: 0;
