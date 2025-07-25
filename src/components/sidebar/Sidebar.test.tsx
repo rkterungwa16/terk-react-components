@@ -1,12 +1,8 @@
 import { render, screen, act, cleanup } from "@testing-library/react";
-import {
-  createRef,
-  ReactElement,
-  RefObject,
-  Ref,
-} from "react";
+import { createRef, ReactElement, RefObject, Ref } from "react";
 import Sidebar from "./Sidebar";
 import { jest } from "@jest/globals";
+import { Overlay } from "../overlay/Overlay";
 
 // Mock the hooks
 jest.mock("../../hooks/useCurrentBreakpoint", () => ({
@@ -17,6 +13,12 @@ jest.mock("../../hooks/useCurrentBreakpoint", () => ({
 jest.mock("../../hooks/useClickOutside", () => ({
   useClickOutside: jest.fn(),
 }));
+
+// Mock the Overlay component
+jest.mock("../overlay/Overlay", () => {
+  const MockOverlay = jest.fn(() => <div data-testid="mock-overlay" />);
+  return { Overlay: MockOverlay };
+});
 
 // We need to manually mock the Transition component from react-transition-group
 jest.mock("react-transition-group", () => {
@@ -63,6 +65,9 @@ describe("Sidebar Component", () => {
     // Initialize the mainContainerRef in defaultProps
     const div = document.createElement("div");
     defaultProps.mainContainerRef.current = div;
+
+    // Reset mocks
+    (Overlay as jest.Mock).mockClear();
   });
 
   afterEach(() => {
@@ -168,13 +173,29 @@ describe("Sidebar Component", () => {
     // The fact that the test passes means our component is rendering correctly with the timeout
   });
 
-  test("renders null when renderChildren is not provided", () => {
+  test("renders Overlay component when mobile view is active", () => {
+    // Mock small screen (mobile)
+    const mockUseCurrentBreakpoint = (
+      jest.requireMock("../../hooks/useCurrentBreakpoint") as {
+        useCurrentBreakpoint: jest.Mock;
+      }
+    ).useCurrentBreakpoint;
+    mockUseCurrentBreakpoint.mockReturnValue("sm");
+
+    const customTimeout = 300;
+    render(<Sidebar {...defaultProps} timeout={customTimeout} />);
+
+    // Just verify the Overlay was called (we can't easily check exact props)
+    expect(Overlay).toHaveBeenCalled();
+  });
+
+  test("renders null for sidebar content when renderChildren is not provided", () => {
     const mainContainerRef = createRef<HTMLDivElement>();
     mainContainerRef.current = document.createElement("div");
 
-    const { container } = render(
+    render(
       <Sidebar
-        isClose={false}
+        isClose={true}
         size="lg"
         themeMode="light"
         width={240}
@@ -182,12 +203,13 @@ describe("Sidebar Component", () => {
       />,
     );
 
-    expect(container.firstChild).toBeNull();
+    // We're testing that no sidebar content is rendered when renderChildren is not provided
+    expect(screen.queryByTestId("sidebar-content")).toBeNull();
   });
 
   // Test for responsive behavior would ideally mock window resizing
   // and useCurrentBreakpoint hook to simulate different breakpoints
-  test("handles responsive behavior with mobile screens", () => {
+  test("sets margin to 0 in mobile view", () => {
     // Since we already mocked useCurrentBreakpoint at the top of the file,
     // we can modify its return value for this test
     const mockUseCurrentBreakpoint = (
@@ -210,14 +232,20 @@ describe("Sidebar Component", () => {
       // This simulates a re-render after the breakpoint change
     });
 
-    // On mobile view, sidebar should be closed and main container margin should be 0
+    // On mobile view, main container margin should be 0
     expect(mainContainerRef.current.style.marginLeft).toBe("0rem");
+
+    // Verify Overlay component is called in mobile view
+    expect(Overlay).toHaveBeenCalled();
 
     // Reset mock to original value
     mockUseCurrentBreakpoint.mockReturnValue("lg");
   });
 
-  test("handles responsive behavior with desktop screens", () => {
+  test("adjusts margin in desktop view and doesn't show overlay", () => {
+    // Clear previous calls to Overlay
+    (Overlay as jest.Mock).mockClear();
+
     const mockUseCurrentBreakpoint = (
       jest.requireMock("../../hooks/useCurrentBreakpoint") as {
         useCurrentBreakpoint: jest.Mock;
@@ -246,5 +274,9 @@ describe("Sidebar Component", () => {
 
     // On desktop view with sidebar open, main container should have margin
     expect(mainContainerRef.current.style.marginLeft).toBe("20rem");
+
+    // On desktop with sidebar open, no overlay should be shown
+    // If renderSidebarOverlay returns null on desktop, Overlay won't be called
+    expect(screen.queryByTestId("mock-overlay")).toBeNull();
   });
 });

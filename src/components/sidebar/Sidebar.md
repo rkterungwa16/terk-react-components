@@ -12,13 +12,14 @@ The `Sidebar` component provides a collapsible, responsive side navigation panel
 - **Click Outside Detection**: Can automatically close when clicking outside the sidebar
 - **Flexible Rendering**: Uses render props pattern for complete control over the sidebar content
 - **Container Margin Adjustment**: Automatically adjusts the margin of a container element to accommodate the sidebar
+- **Overlay Support**: Shows a semi-transparent overlay on mobile views when sidebar is open
 
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `isClose` | boolean | Required | Controls whether the sidebar is closed |
-| `timeout` | number | 150 | Transition duration in milliseconds |
+| `timeout` | 150 \| 200 \| 250 \| 300 \| 350 \| 400 | 150 | Transition duration in milliseconds |
 | `theme` | object | undefined | Custom theme settings for colors |
 | `themeMode` | "dark" \| "light" | undefined | The theme variant to use |
 | `size` | "sm" \| "lg" \| "xl" | undefined | Controls the width of the sidebar |
@@ -59,8 +60,13 @@ The `renderChildren` prop accepts a function with the following signature:
 
 The Sidebar component automatically adapts to different screen sizes:
 
-- On small screens (sm, md breakpoints): Sidebar is hidden by default
-- On larger screens (lg, xl, 2xl breakpoints): Sidebar is visible according to the `isClose` prop
+- On small screens (sm, md breakpoints): 
+  - Sidebar is hidden by default
+  - When open, an overlay is displayed behind the sidebar
+  - Sidebar appears as a sliding drawer over the content
+- On larger screens (lg, xl, 2xl breakpoints): 
+  - Sidebar is visible according to the `isClose` prop
+  - No overlay is displayed
 
 ### Transition States
 
@@ -86,6 +92,15 @@ The component uses `mainContainerRef` to automatically adjust the margin of the 
 The sidebar uses the `useClickOutside` hook to detect clicks on the main container element. When a `handleClose` prop is provided, clicking outside the sidebar will trigger this callback, typically used to close the sidebar.
 
 The `handleClose` function receives the current `isClose` state and should return a callback function that will be executed when clicking outside.
+
+### Overlay Behavior
+
+On mobile devices (sm, md breakpoints), the Sidebar component renders an Overlay when the sidebar is open:
+
+- The Overlay appears behind the sidebar but in front of the main content
+- It uses the same `timeout` value as the sidebar for consistent animations
+- The Overlay is automatically shown/hidden based on the sidebar's open/closed state
+- It helps to visually indicate that the focus is on the sidebar and provides a tap target for closing the sidebar
 
 ## Usage Examples
 
