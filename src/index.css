@@ -1,6 +1,8 @@
 /* Modules */
-@import './styles/flexbox.css';
-@import './styles/height.css';
+@import "./styles/flexbox.css";
+@import "./styles/height.css";
+@import "./styles/transition.css";
+@import "./styles/link.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -24,6 +26,13 @@
   --breakpoint-max-width-lg: 960px;
   --breakpoint-max-width-xl: 1140px;
   --breakpoint-max-width-2xl: 1320px;
+
+  --timeout-xs: 150ms;
+  --timeout-sm: 200ms;
+  --timeout-md: 250ms;
+  --timeout-lg: 300ms;
+  --timeout-xl: 350ms;
+  --timeout-2xl: 400ms;
 }
 
 body {
@@ -34,7 +43,6 @@ body {
   min-height: 100vh;
 }
 
-
 #root {
   /* max-width: 1280px;
   margin: 0 auto;
@@ -43,4 +51,3 @@ body {
   width: 100%;
   display: flex;
 }
-

@@ -13,11 +13,11 @@ import { ITransitionStyle } from "./types";
 
 import "./styles.css";
 import { useCurrentBreakpoint } from "../../hooks/useCurrentBreakpoint";
-import { sizes } from "./constants";
+import { sizes, timeouts } from "./constants";
 
 interface ISidebar {
   isClose: boolean;
-  timeout?: number;
+  timeout?: 150 | 200 | 250 | 300 | 350 | 400;
   theme?: {
     sidebar: {
       dark: {
@@ -114,6 +114,7 @@ const Sidebar: FC<ISidebar> = (props) => {
     // ...(!isClose ? [`terkui-sidebar-size-${props.size}`] : ["terkui-sidebar-w-0"]),
     `terkui-sidebar-size-${props.size}`,
     `terkui-sidebar-theme-${props.themeMode}`,
+    `terkui-transition-easeout-${timeouts[props.timeout || 150]}`
   ];
 
   return (

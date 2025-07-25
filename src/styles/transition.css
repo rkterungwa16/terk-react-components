@@ -1,0 +1,23 @@
+.terkui-transition-easeout-xs {
+  transition: var(--timeout-xs) ease-out;
+}
+
+.terkui-transition-easeout-sm {
+  transition: var(--timeout-sm) ease-out;
+}
+
+.terkui-transition-easeout-md {
+  transition: var(--timeout-md) ease-out;
+}
+
+.terkui-transition-easeout-lg {
+  transition: var(--timeout-lg) ease-out;
+}
+
+.terkui-transition-easeout-xl {
+  transition: var(--timeout-xl) ease-out;
+}
+
+.terkui-transition-easeout-2xl {
+  transition: var(--timeout-2xl) ease-out;
+}
