@@ -1,0 +1,6 @@
+.terkui-nav-item {
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
