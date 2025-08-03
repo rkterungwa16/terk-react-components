@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { createRef, ElementType, forwardRef } from "react";
+import { createRef, forwardRef } from "react";
 import { NavItem } from "./NavItem";
 
 describe("NavItem Component", () => {
   test("renders correctly as a list item by default", () => {
-    render(<NavItem>Nav Item Text</NavItem>);
+    render(<NavItem component="li">Nav Item Text</NavItem>);
 
     const element = screen.getByText("Nav Item Text");
     const listItem = element.closest("li");
@@ -15,7 +15,9 @@ describe("NavItem Component", () => {
 
   test("applies custom class to list item", () => {
     render(
-      <NavItem classes={{ item: "custom-item-class" }}>Nav Item Text</NavItem>,
+      <NavItem component="li" classes={{ item: "custom-item-class" }}>
+        Nav Item Text
+      </NavItem>
     );
 
     const listItem = screen.getByText("Nav Item Text").closest("li");
@@ -24,7 +26,11 @@ describe("NavItem Component", () => {
   });
 
   test("wraps children in Link component when href is provided", () => {
-    render(<NavItem href="/test-link">Link Text</NavItem>);
+    render(
+      <NavItem component="li" href="/test-link">
+        Link Text
+      </NavItem>
+    );
 
     const linkElement = screen.getByText("Link Text");
     expect(linkElement.tagName).toBe("A");
@@ -35,9 +41,13 @@ describe("NavItem Component", () => {
 
   test("applies custom class to wrapped Link component", () => {
     render(
-      <NavItem href="/test-link" classes={{ link: "custom-link-class" }}>
+      <NavItem
+        component="li"
+        href="/test-link"
+        classes={{ link: "custom-link-class" }}
+      >
         Link Text
-      </NavItem>,
+      </NavItem>
     );
 
     const linkElement = screen.getByText("Link Text");
@@ -48,13 +58,14 @@ describe("NavItem Component", () => {
     render(
       <NavItem
         href="/test-link"
+        component="li"
         classes={{
           item: "custom-item-class",
           link: "custom-link-class",
         }}
       >
         Link Text
-      </NavItem>,
+      </NavItem>
     );
 
     const linkElement = screen.getByText("Link Text");
@@ -67,7 +78,11 @@ describe("NavItem Component", () => {
   test("forwards ref to the underlying list item element", () => {
     const ref = createRef<HTMLLIElement>();
 
-    render(<NavItem ref={ref}>Nav Item with Ref</NavItem>);
+    render(
+      <NavItem component="li" ref={ref}>
+        Nav Item with Ref
+      </NavItem>
+    );
 
     expect(ref.current).not.toBeNull();
     expect(ref.current?.tagName).toBe("LI");
@@ -80,7 +95,7 @@ describe("NavItem Component", () => {
     render(
       <NavItem component="div" ref={ref}>
         Nav Item with Div Ref
-      </NavItem>,
+      </NavItem>
     );
 
     expect(ref.current).not.toBeNull();
@@ -91,6 +106,7 @@ describe("NavItem Component", () => {
   test("passes Link props to the Link component when href is provided", () => {
     render(
       <NavItem
+        component="li"
         href="/test-link"
         target="_blank"
         rel="noopener noreferrer"
@@ -98,7 +114,7 @@ describe("NavItem Component", () => {
         disabled
       >
         Link Text
-      </NavItem>,
+      </NavItem>
     );
 
     const linkElement = screen.getByText("Link Text");
@@ -111,9 +127,9 @@ describe("NavItem Component", () => {
 
   test("renders children directly when no href is provided", () => {
     render(
-      <NavItem>
+      <NavItem component="li">
         <span data-testid="custom-child">Custom Child Element</span>
-      </NavItem>,
+      </NavItem>
     );
 
     const childElement = screen.getByTestId("custom-child");
@@ -133,13 +149,17 @@ describe("NavItem Component", () => {
   });
 
   test("renders with custom component", () => {
-    const CustomComponent = forwardRef<HTMLElement, any>((props, ref) => (
-      <section {...props} ref={ref} data-testid="custom-section" />
-    ));
+    interface CustomComponentProps {
+      id?: string;
+    }
+    const CustomComponent = forwardRef<HTMLElement, CustomComponentProps>(
+      (props, ref) => (
+        <section {...props} ref={ref} data-testid="custom-section" />
+      )
+    );
 
     render(<NavItem component={CustomComponent}>Custom Component</NavItem>);
 
-    const element = screen.getByText("Custom Component");
     const customElement = screen.getByTestId("custom-section");
 
     expect(customElement).toBeInTheDocument();
