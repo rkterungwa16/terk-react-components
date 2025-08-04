@@ -15,7 +15,7 @@ export const NavItem = forwardRef<
   HTMLLIElement | HTMLDivElement,
   LinkProps & NavItemProps
 >(({ children, component = "li", ...others }, ref) => {
-  const classes = ["terkui-nav-item", others.classes?.item];
+  const classes = ["terkui-nav-item", "terkui-text-white", others.classes?.item];
   const Component = component;
   if (others.href) {
     children = (

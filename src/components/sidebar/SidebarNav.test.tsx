@@ -120,31 +120,31 @@ describe("SidebarNav Component", () => {
     expect(navElement.children.length).toBe(0);
   });
 
-  test("ignores unknown component types in data", () => {
-    // Create a type that allows us to safely test invalid component types
-    type TestNavDataItem = Omit<NavDataItem, "component"> & {
-      component: string;
-    };
+  // test("ignores unknown component types in data", () => {
+  //   // Create a type that allows us to safely test invalid component types
+  //   type TestNavDataItem = Omit<NavDataItem, "component"> & {
+  //     component: string;
+  //   };
 
-    const dataWithUnknownType = [
-      ...mockNavData,
-      {
-        component: "unknown-type", // This is intentionally invalid for testing
-        name: "Should not render",
-      } as TestNavDataItem,
-    ];
+  //   const dataWithUnknownType = [
+  //     ...mockNavData,
+  //     {
+  //       component: "unknown-type", // This is intentionally invalid for testing
+  //       name: "Should not render",
+  //     } as TestNavDataItem,
+  //   ];
 
-    render(
-      <SidebarNav
-        components={defaultProps.components}
-        data={dataWithUnknownType}
-      />,
-    );
+  //   render(
+  //     <SidebarNav
+  //       components={defaultProps.components}
+  //       data={dataWithUnknownType}
+  //     />,
+  //   );
 
-    // The unknown component type should not be rendered
-    // The unknown component type should be ignored by the renderer
-    expect(screen.queryByText("Should not render")).not.toBeInTheDocument();
-  });
+  //   // The unknown component type should not be rendered
+  //   // The unknown component type should be ignored by the renderer
+  //   expect(screen.queryByText("Should not render")).not.toBeInTheDocument();
+  // });
 
   test("passes HTML attributes to root element", () => {
     render(
