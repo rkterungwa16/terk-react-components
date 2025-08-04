@@ -1,3 +1,34 @@
+.terkui-nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.terkui-nav-filled {
+  width: 100%;
+}
+
+.terkui-nav-justify-start {
+  justify-content: flex-start;
+}
+
+.terkui-nav-justify-center {
+  justify-content: center;
+}
+
+.terkui-nav-justify-end {
+  justify-content: end;
+}
+
+.terkui-nav-direction-horizontal {
+  flex-direction: row;
+}
+
+.terkui-nav-direction-vertical {
+  flex-direction: column;
+}
+
 .terkui-nav-item {
   position: relative;
   white-space: nowrap;

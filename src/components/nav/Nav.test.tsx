@@ -98,9 +98,12 @@ describe("Nav Component", () => {
   });
 
   test("renders with custom component", () => {
-    const CustomComponent = forwardRef<HTMLElement, any>((props, ref) => (
-      <aside {...props} ref={ref} data-testid="custom-aside" />
-    ));
+    interface CustomComponentProps {
+      id?: string;
+    }
+    const CustomComponent = forwardRef<HTMLElement, CustomComponentProps>(
+      (props, ref) => <aside {...props} ref={ref} data-testid="custom-aside" />
+    );
 
     render(<Nav component={CustomComponent}>Custom Component</Nav>);
 
@@ -113,11 +116,7 @@ describe("Nav Component", () => {
 
   test("passes HTML attributes to root element", () => {
     render(
-      <Nav
-        data-testid="custom-nav"
-        aria-label="Main Navigation"
-        id="main-nav"
-      >
+      <Nav data-testid="custom-nav" aria-label="Main Navigation" id="main-nav">
         Navigation Content
       </Nav>
     );
@@ -146,3 +145,4 @@ describe("Nav Component", () => {
     expect(navElement).toHaveClass("custom-class");
   });
 });
+
