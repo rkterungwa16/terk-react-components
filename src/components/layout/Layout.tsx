@@ -1,10 +1,20 @@
-import { FC, ReactNode, Ref, RefObject, useCallback, useRef, useState } from "react";
+import {
+  FC,
+  ReactNode,
+  Ref,
+  RefObject,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import { Container } from "../container/Container";
 import Sidebar from "../sidebar/Sidebar";
 import { sidebarTheme } from "../sidebar/theme";
 import classnames from "classnames";
 
 import "./styles.css";
+import { SidebarNav } from "../sidebar/SidebarNav";
+import { navData } from "../sidebar/navData";
 
 export interface ILayout {
   children?: ReactNode;
@@ -65,11 +75,17 @@ export const Layout: FC<ILayout> = ({ children }) => {
               }}
               ref={props.ref}
             >
-              <p className="terkui-py-3">Monday</p>
+              <SidebarNav
+                data={navData}
+                components={{ nav: "ul", navItem: "li" }}
+                ref={props.ref}
+
+              />
+              {/* <p className="terkui-py-3">Monday</p>
               <p>Tuesday</p>
               <p>Wednesday</p>
               <p>Thursday</p>
-              <p>Friday</p>
+              <p>Friday</p> */}
             </div>
           );
         }}

@@ -1,0 +1,11 @@
+.terkui-text-black {
+  color: var(--color-black);
+}
+
+.terkui-text-white {
+  color: var(--color-white);
+}
+
+.terkui-text-gray {
+  color: var(--color-gray)
+}

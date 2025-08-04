@@ -1,0 +1,11 @@
+.terkui-capitalize {
+  text-transform: capitalize;
+}
+
+.terkui-uppercase {
+  text-transform: uppercase;
+}
+
+.terkui-lowercase {
+  text-transform: lowercase;
+}

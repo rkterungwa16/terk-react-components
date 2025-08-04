@@ -1,6 +1,7 @@
 .terkui-link {
   text-decoration: none;
   transition: color 0.15s ease-in;
+  color: inherit;
 }
 
 .terkui-link:link,
