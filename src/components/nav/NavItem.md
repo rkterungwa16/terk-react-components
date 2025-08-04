@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `NavItem` component is a navigation item wrapper that renders as an `<li>` element by default, but can be configured to render as other elements. It's designed to be used in navigation menus and lists. When provided with an `href` prop, it automatically wraps its children in a `Link` component.
+The `NavItem` component is a navigation item wrapper that renders as an `<li>` element by default, but can be configured to render as other elements. It's designed to be used in navigation menus and lists. When provided with an `href` prop, it automatically wraps its children in a `Link` component. The component includes white text styling by default.
 
 ## Import
 
@@ -20,7 +20,7 @@ The `NavItem` component accepts all properties from the `Link` component plus th
 |------|------|---------|-------------|
 | `classes.item` | `string` | `undefined` | Additional CSS class(es) to apply to the container element |
 | `classes.link` | `string` | `undefined` | Additional CSS class(es) to apply to the link element (when href is provided) |
-| `component` | `"div" \| "li" \| ElementType` | `"li"` | The component used for the root node |
+| `component` | `"div" \| "li" \| ElementType` | `"li"` | Required. The component used for the root node |
 
 ### Inherited from LinkProps
 
@@ -100,6 +100,13 @@ The component comes with minimal default styling:
   - Sets `white-space: nowrap`
   - Sets `text-decoration: none`
   - Sets `cursor: pointer`
+  - Sets `font-weight: 500`
+  - Sets `padding: 0.75rem 1rem`
+  - Sets `border-radius: 0.5rem`
+  - Includes hover state styling:
+    - Increases `font-weight` to 700
+    - Changes text color to light gray
+    - Adds gray background color
 
 You can customize the styling by:
 

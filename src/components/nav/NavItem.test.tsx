@@ -11,25 +11,27 @@ describe("NavItem Component", () => {
 
     expect(listItem).toBeInTheDocument();
     expect(listItem).toHaveClass("terkui-nav-item");
+    expect(listItem).toHaveClass("terkui-text-white");
   });
 
   test("applies custom class to list item", () => {
     render(
       <NavItem component="li" classes={{ item: "custom-item-class" }}>
         Nav Item Text
-      </NavItem>
+      </NavItem>,
     );
 
     const listItem = screen.getByText("Nav Item Text").closest("li");
     expect(listItem).toHaveClass("custom-item-class");
     expect(listItem).toHaveClass("terkui-nav-item");
+    expect(listItem).toHaveClass("terkui-text-white");
   });
 
   test("wraps children in Link component when href is provided", () => {
     render(
       <NavItem component="li" href="/test-link">
         Link Text
-      </NavItem>
+      </NavItem>,
     );
 
     const linkElement = screen.getByText("Link Text");
@@ -37,6 +39,7 @@ describe("NavItem Component", () => {
     expect(linkElement).toHaveAttribute("href", "/test-link");
     expect(linkElement).toHaveClass("terkui-link");
     expect(linkElement.closest("li")).toHaveClass("terkui-nav-item");
+    expect(linkElement.closest("li")).toHaveClass("terkui-text-white");
   });
 
   test("applies custom class to wrapped Link component", () => {
@@ -47,7 +50,7 @@ describe("NavItem Component", () => {
         classes={{ link: "custom-link-class" }}
       >
         Link Text
-      </NavItem>
+      </NavItem>,
     );
 
     const linkElement = screen.getByText("Link Text");
@@ -65,7 +68,7 @@ describe("NavItem Component", () => {
         }}
       >
         Link Text
-      </NavItem>
+      </NavItem>,
     );
 
     const linkElement = screen.getByText("Link Text");
@@ -81,7 +84,7 @@ describe("NavItem Component", () => {
     render(
       <NavItem component="li" ref={ref}>
         Nav Item with Ref
-      </NavItem>
+      </NavItem>,
     );
 
     expect(ref.current).not.toBeNull();
@@ -95,7 +98,7 @@ describe("NavItem Component", () => {
     render(
       <NavItem component="div" ref={ref}>
         Nav Item with Div Ref
-      </NavItem>
+      </NavItem>,
     );
 
     expect(ref.current).not.toBeNull();
@@ -114,7 +117,7 @@ describe("NavItem Component", () => {
         disabled
       >
         Link Text
-      </NavItem>
+      </NavItem>,
     );
 
     const linkElement = screen.getByText("Link Text");
@@ -129,13 +132,14 @@ describe("NavItem Component", () => {
     render(
       <NavItem component="li">
         <span data-testid="custom-child">Custom Child Element</span>
-      </NavItem>
+      </NavItem>,
     );
 
     const childElement = screen.getByTestId("custom-child");
     expect(childElement).toBeInTheDocument();
     expect(childElement.tagName).toBe("SPAN");
     expect(childElement.closest("li")).toHaveClass("terkui-nav-item");
+    expect(childElement.closest("li")).toHaveClass("terkui-text-white");
   });
 
   test("renders as a div when component prop is set to div", () => {
@@ -146,6 +150,7 @@ describe("NavItem Component", () => {
 
     expect(divElement).toBeInTheDocument();
     expect(divElement).toHaveClass("terkui-nav-item");
+    expect(divElement).toHaveClass("terkui-text-white");
   });
 
   test("renders with custom component", () => {
@@ -155,7 +160,7 @@ describe("NavItem Component", () => {
     const CustomComponent = forwardRef<HTMLElement, CustomComponentProps>(
       (props, ref) => (
         <section {...props} ref={ref} data-testid="custom-section" />
-      )
+      ),
     );
 
     render(<NavItem component={CustomComponent}>Custom Component</NavItem>);
@@ -164,6 +169,7 @@ describe("NavItem Component", () => {
 
     expect(customElement).toBeInTheDocument();
     expect(customElement).toHaveClass("terkui-nav-item");
+    expect(customElement).toHaveClass("terkui-text-white");
     expect(customElement.textContent).toBe("Custom Component");
   });
 });

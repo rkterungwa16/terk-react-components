@@ -76,6 +76,19 @@ const CustomNav = forwardRef((props, ref) => (
 </Nav>
 ```
 
+### With Subtitle Section
+
+```tsx
+<Nav direction="vertical">
+  <h6 className="terkui-nav-subtitle">Main Navigation</h6>
+  <NavItem href="/home">Home</NavItem>
+  <NavItem href="/about">About</NavItem>
+  <h6 className="terkui-nav-subtitle">User Options</h6>
+  <NavItem href="/profile">Profile</NavItem>
+  <NavItem href="/settings">Settings</NavItem>
+</Nav>
+```
+
 ## Styling
 
 The component comes with the following default styling:
@@ -99,6 +112,13 @@ The component comes with the following default styling:
 
 - `.terkui-nav-direction-vertical`: Vertical layout
   - Sets `flex-direction: column`
+
+- `.terkui-nav-subtitle`: Used for navigation section subtitles
+  - Sets `font-size: 1rem`
+  - Sets `white-space: nowrap`
+  - Sets `padding: 0.75rem 1rem`
+  - Sets `margin: 0`
+  - Sets `letter-spacing: 2px`
 
 You can customize the styling by:
 
