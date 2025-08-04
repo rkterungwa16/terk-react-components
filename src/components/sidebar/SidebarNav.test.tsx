@@ -1,5 +1,6 @@
+import React, { ElementType, createRef } from "react";
 import { render, screen } from "@testing-library/react";
-import { createRef } from "react";
+import "@testing-library/jest-dom";
 import { SidebarNav } from "./SidebarNav";
 import { NavData } from "./navData";
 
@@ -24,8 +25,8 @@ describe("SidebarNav Component", () => {
 
   const defaultProps = {
     components: {
-      nav: "nav",
-      navItem: "li",
+      nav: "nav" as ElementType,
+      navItem: "li" as ElementType,
     },
     data: mockNavData,
   };
@@ -74,9 +75,9 @@ describe("SidebarNav Component", () => {
         {...defaultProps}
         components={{
           ...defaultProps.components,
-          nav: "ul",
+          nav: "ul" as ElementType,
         }}
-      />
+      />,
     );
 
     const navElement = screen.getByRole("navigation");
@@ -89,9 +90,9 @@ describe("SidebarNav Component", () => {
         {...defaultProps}
         components={{
           ...defaultProps.components,
-          navItem: "div",
+          navItem: "div" as ElementType,
         }}
-      />
+      />,
     );
 
     // NavItems should be div elements now
@@ -100,7 +101,9 @@ describe("SidebarNav Component", () => {
   });
 
   test("forwards ref to the underlying nav element", () => {
-    const ref = createRef<HTMLElement>();
+    const ref = createRef<
+      HTMLDivElement | HTMLUListElement | HTMLOListElement
+    >();
 
     render(<SidebarNav {...defaultProps} ref={ref} />);
 
@@ -109,12 +112,7 @@ describe("SidebarNav Component", () => {
   });
 
   test("renders with empty data array", () => {
-    render(
-      <SidebarNav
-        components={defaultProps.components}
-        data={[]}
-      />
-    );
+    render(<SidebarNav components={defaultProps.components} data={[]} />);
 
     const navElement = screen.getByRole("navigation");
     expect(navElement).toBeInTheDocument();
@@ -123,23 +121,28 @@ describe("SidebarNav Component", () => {
   });
 
   test("ignores unknown component types in data", () => {
+    // Create a type that allows us to safely test invalid component types
+    type TestNavDataItem = Omit<NavDataItem, "component"> & {
+      component: string;
+    };
+
     const dataWithUnknownType = [
       ...mockNavData,
       {
-        // @ts-ignore - intentionally using an invalid type for testing
-        component: "unknown-type",
+        component: "unknown-type", // This is intentionally invalid for testing
         name: "Should not render",
-      },
+      } as TestNavDataItem,
     ];
 
     render(
       <SidebarNav
         components={defaultProps.components}
         data={dataWithUnknownType}
-      />
+      />,
     );
 
     // The unknown component type should not be rendered
+    // The unknown component type should be ignored by the renderer
     expect(screen.queryByText("Should not render")).not.toBeInTheDocument();
   });
 
@@ -149,7 +152,7 @@ describe("SidebarNav Component", () => {
         {...defaultProps}
         data-testid="custom-sidebar-nav"
         aria-label="Site Navigation"
-      />
+      />,
     );
 
     const navElement = screen.getByTestId("custom-sidebar-nav");
