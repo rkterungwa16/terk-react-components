@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Container } from "./Container";
 import { createRef } from "react";
-import { jest } from "@jest/globals";
 
 describe("Container Component", () => {
   test("renders correctly with default props", () => {
