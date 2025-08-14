@@ -1,0 +1,11 @@
+.terkui-header {
+  top: 0;
+  z-index: 1024;
+}
+.terkui-header-sticky {
+  position: sticky;
+}
+
+.terkui-header-fixed {
+  position: fixed;
+}
