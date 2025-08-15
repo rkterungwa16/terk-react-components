@@ -171,7 +171,7 @@ describe("Sidebar Component", () => {
 
     // The component maps numeric timeout values to named constants (xs, sm, md, etc.)
     const timeoutName =
-      Object.entries(timeouts).find(([_, value]) => value === timeout)?.[0] ||
+      Object.entries(timeouts).find(([, value]) => Number(value) === timeout)?.[0] ||
       "md";
 
     expect(sidebarContent.className).toContain(

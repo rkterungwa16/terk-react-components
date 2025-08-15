@@ -3,7 +3,6 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { SidebarNav } from "./SidebarNav";
 import { NavData } from "./navData";
-import { jest } from "@jest/globals";
 
 describe("SidebarNav Component", () => {
   // Sample navigation data for testing
@@ -145,7 +144,7 @@ describe("SidebarNav Component", () => {
     const dataWithUnknownType = [
       ...mockNavData.slice(0, 2),
       {
-        component: "unknown-type" as any, // This is intentionally invalid for testing
+        component: "unknown-type" as never, // This is intentionally invalid for testing
         name: "Should not render",
       },
     ];
@@ -195,11 +194,11 @@ describe("SidebarNav Component", () => {
 
   test("renders with custom components", () => {
     // Create custom components
-    const CustomNav = forwardRef<HTMLElement>((props, ref) => (
+    const CustomNav = forwardRef<HTMLDivElement>((props, ref) => (
       <aside {...props} ref={ref} data-testid="custom-nav" />
     ));
 
-    const CustomNavItem = forwardRef<HTMLElement>((props, ref) => (
+    const CustomNavItem = forwardRef<HTMLDivElement>((props, ref) => (
       <div {...props} ref={ref} data-testid="custom-nav-item" />
     ));
 
