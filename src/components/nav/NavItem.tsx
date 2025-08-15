@@ -25,7 +25,6 @@ export const NavItem = forwardRef<
   // Extract props that should not be passed to Link
   const {
     classes: classesProps,
-    component: componentProp,
     "data-testid": testId,
     ...linkProps
   } = others;

@@ -186,7 +186,7 @@ describe("NavItem Component", () => {
     const spanElement = screen.getByText("Span Nav Item").closest("span");
 
     expect(spanElement).toBeInTheDocument();
-    expect(spanElement.tagName).toBe("SPAN");
+    expect(spanElement?.tagName).toBe("SPAN");
     expect(spanElement).toHaveClass("terkui-nav-item");
     expect(spanElement).toHaveClass("terkui-text-white");
   });
