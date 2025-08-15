@@ -15,6 +15,9 @@ import classnames from "classnames";
 import "./styles.css";
 import { SidebarNav } from "../sidebar/SidebarNav";
 import { navData } from "../sidebar/navData";
+import { Header } from "../header/Header";
+import { HeaderNav } from "../header/HeaderNav";
+import { headerNavData } from "../header/header-nav.data";
 
 export interface ILayout {
   children?: ReactNode;
@@ -79,7 +82,6 @@ export const Layout: FC<ILayout> = ({ children }) => {
                 data={navData}
                 components={{ nav: "ul", navItem: "li" }}
                 ref={props.ref}
-
               />
               {/* <p className="terkui-py-3">Monday</p>
               <p>Tuesday</p>
@@ -93,6 +95,12 @@ export const Layout: FC<ILayout> = ({ children }) => {
       <main ref={containerRef} className="content">
         <div className="terkui-flex terkui-flex-column terkui-min-vh-100">
           {/* <AppHeader /> */}
+          <Header container={{ breakpoint: "fluid" }}>
+            <HeaderNav
+              data={headerNavData}
+              components={{ nav: "nav", navItem: "span" }}
+            ></HeaderNav>
+          </Header>
           <div className="terkui-flex-grow-1 px-3">
             <button onClick={handleOnclick(isClose)}>Toogle sidebar</button>
             <Container breakpoint="lg">{children}</Container>
