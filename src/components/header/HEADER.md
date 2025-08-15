@@ -1,6 +1,6 @@
 # Header Component
 
-A flexible header component that provides a consistent header layout for your application. The Header component can be positioned as `fixed` or `sticky` and can optionally wrap its content in a `Container` for responsive width management.
+A flexible header component that provides a consistent header layout for your application. The Header component can be positioned as `fixed` or `sticky` and can optionally wrap its content in a `Container` for responsive width management. It's designed to work with the `HeaderNav` component to create complete navigation headers, but can be used with any content.
 
 ## Installation
 
@@ -118,6 +118,64 @@ function FixedHeader() {
 }
 ```
 
+### With HeaderNav Integration
+
+```tsx
+import { Header, HeaderNav } from 'terk-react-components';
+
+// Navigation data structure
+const navigationData = [
+  {
+    component: "nav-item",
+    name: "Home",
+    href: "/home",
+  },
+  {
+    component: "nav-group",
+    name: "Products",
+    group: [
+      {
+        component: "nav-item",
+        name: "Category 1",
+        href: "/products/category-1",
+      },
+      {
+        component: "nav-item",
+        name: "Category 2",
+        href: "/products/category-2",
+      }
+    ]
+  },
+  {
+    component: "nav-item",
+    name: "Contact",
+    href: "/contact",
+  }
+];
+
+function MainHeader() {
+  return (
+    <Header 
+      position="sticky" 
+      container={{ breakpoint: "lg" }}
+    >
+      <div className="header-content">
+        <div className="logo">
+          <img src="/logo.svg" alt="Company Logo" />
+        </div>
+        <HeaderNav
+          components={{
+            nav: "nav",
+            navItem: "li"
+          }}
+          data={navigationData}
+        />
+      </div>
+    </Header>
+  );
+}
+```
+
 ### With Event Handlers
 
 ```tsx
@@ -154,8 +212,21 @@ function InteractiveHeader() {
 The Header component comes with minimal styling to handle positioning behaviors:
 
 - `.terkui-header` - Base class for all headers
+  - Sets positioning at the top of the viewport 
+  - Sets z-index to 1024 for proper stacking
 - `.terkui-header-sticky` - Applied when `position="sticky"` is used
+  - Sets `position: sticky` for header that sticks to viewport when scrolling
 - `.terkui-header-fixed` - Applied when `position="fixed"` is used
+  - Sets `position: fixed` for header that stays in place regardless of scrolling
+
+When used with the HeaderNav component, the following classes are available:
+
+- `.terkui-header-nav` - Applied to the navigation container
+  - Sets display as flex with space-between justification
+  - Adds padding for proper spacing
+- `.terkui-header-nav-item` - Applied to navigation items
+  - Provides consistent styling for nav items within the header
+  - Configures proper spacing, text styling, and hover effects
 
 ### CSS Variables
 
@@ -164,6 +235,7 @@ The Header component relies on these CSS variables:
 | CSS Variable | Description |
 |--------------|-------------|
 | `--z-index` | Controls the stacking order of the header (default: 1024) |
+| `--color-black` | Used for text color in header navigation items |
 
 ## Accessibility
 
@@ -178,9 +250,19 @@ When using the Header component, consider the following accessibility best pract
 
 The Header component uses standard CSS positioning properties which are well-supported in all modern browsers.
 
+## Related Components
+
+- **HeaderNav**: Specialized navigation component designed to work within the Header
+- **Container**: Used internally when the `container` prop is provided
+- **Nav**: Base navigation component used by HeaderNav
+- **NavItem**: Used by HeaderNav to render individual navigation items
+
 ## Best Practices
 
 - For fixed headers, remember to add appropriate padding to the top of your content to prevent it from being hidden under the header
 - Use the container prop to ensure your header content has consistent width constraints that match the rest of your layout
 - Consider how the header will behave on mobile devices, especially when using position="fixed"
 - Use the z-index carefully if you have other fixed or absolute-positioned elements
+- Consider using the HeaderNav component for consistent navigation styling
+- For responsive designs, you may need to implement a mobile menu toggle for small screens
+- Test fixed headers on mobile devices to ensure they don't take up too much screen space
