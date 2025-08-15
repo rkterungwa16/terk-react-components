@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { createRef, forwardRef } from "react";
-import { HeaderNav } from "./HeaderNav";
+import { HeaderNav, HeaderNavProps } from "./HeaderNav";
 import { HeaderNavData } from "./header-nav.data";
 
 describe("HeaderNav Component", () => {
@@ -29,7 +29,7 @@ describe("HeaderNav Component", () => {
     },
   ];
 
-  const defaultProps = {
+  const defaultProps: HeaderNavProps = {
     components: {
       nav: "nav",
       navItem: "li",
@@ -147,7 +147,7 @@ describe("HeaderNav Component", () => {
       <aside {...props} ref={ref} data-testid="custom-nav" />
     ));
 
-    const CustomNavItem = forwardRef<HTMLElement>((props, ref) => (
+    const CustomNavItem = forwardRef<HTMLDivElement>((props, ref) => (
       <div {...props} ref={ref} data-testid="custom-nav-item" />
     ));
 
