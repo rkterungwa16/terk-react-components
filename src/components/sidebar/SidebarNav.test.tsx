@@ -1,8 +1,9 @@
-import { ElementType, createRef } from "react";
+import { ElementType, createRef, forwardRef } from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { SidebarNav } from "./SidebarNav";
 import { NavData } from "./navData";
+import { jest } from "@jest/globals";
 
 describe("SidebarNav Component", () => {
   // Sample navigation data for testing
@@ -20,6 +21,20 @@ describe("SidebarNav Component", () => {
       component: "nav-item",
       name: "T-Shirts",
       href: "/products/t-shirts",
+    },
+    // Include an item with icon and badge for testing completeness
+    {
+      component: "nav-item",
+      name: "Settings",
+      href: "/settings",
+      icon: {
+        name: "settings",
+        class: "icon-settings",
+      },
+      badge: {
+        color: "red",
+        text: "New",
+      },
     },
   ];
 
@@ -49,7 +64,7 @@ describe("SidebarNav Component", () => {
     expect(subtitle.tagName).toBe("H6");
     expect(subtitle).toHaveClass("terkui-text-gray");
     expect(subtitle).toHaveClass("terkui-uppercase");
-    expect(subtitle).toHaveClass("terkui-nav-subtitle");
+    expect(subtitle).toHaveClass("terkui-sidebar-nav-subtitle");
   });
 
   test("applies custom className", () => {
@@ -64,9 +79,14 @@ describe("SidebarNav Component", () => {
 
     const dashboardLink = screen.getByText("Dashboard").closest("a");
     expect(dashboardLink).toHaveAttribute("href", "/dashboard");
+    expect(dashboardLink).toHaveClass("terkui-link");
 
     const tShirtsLink = screen.getByText("T-Shirts").closest("a");
     expect(tShirtsLink).toHaveAttribute("href", "/products/t-shirts");
+    expect(tShirtsLink).toHaveClass("terkui-link");
+
+    const settingsLink = screen.getByText("Settings").closest("a");
+    expect(settingsLink).toHaveAttribute("href", "/settings");
   });
 
   test("renders with ul as nav component", () => {
@@ -120,31 +140,26 @@ describe("SidebarNav Component", () => {
     expect(navElement.children.length).toBe(0);
   });
 
-  // test("ignores unknown component types in data", () => {
-  //   // Create a type that allows us to safely test invalid component types
-  //   type TestNavDataItem = Omit<NavDataItem, "component"> & {
-  //     component: string;
-  //   };
+  test("ignores unknown component types in data", () => {
+    // Use a custom data array with an unsupported component type
+    const dataWithUnknownType = [
+      ...mockNavData.slice(0, 2),
+      {
+        component: "unknown-type" as any, // This is intentionally invalid for testing
+        name: "Should not render",
+      },
+    ];
 
-  //   const dataWithUnknownType = [
-  //     ...mockNavData,
-  //     {
-  //       component: "unknown-type", // This is intentionally invalid for testing
-  //       name: "Should not render",
-  //     } as TestNavDataItem,
-  //   ];
+    render(
+      <SidebarNav
+        components={defaultProps.components}
+        data={dataWithUnknownType}
+      />,
+    );
 
-  //   render(
-  //     <SidebarNav
-  //       components={defaultProps.components}
-  //       data={dataWithUnknownType}
-  //     />,
-  //   );
-
-  //   // The unknown component type should not be rendered
-  //   // The unknown component type should be ignored by the renderer
-  //   expect(screen.queryByText("Should not render")).not.toBeInTheDocument();
-  // });
+    // The unknown component type should be ignored by the renderer
+    expect(screen.queryByText("Should not render")).not.toBeInTheDocument();
+  });
 
   test("passes HTML attributes to root element", () => {
     render(
@@ -165,5 +180,55 @@ describe("SidebarNav Component", () => {
     const navElement = screen.getByRole("navigation");
     expect(navElement).toHaveClass("terkui-nav-direction-vertical");
     expect(navElement).toHaveClass("terkui-nav-justify-start");
+  });
+
+  test("applies terkui-sibebar-nav-item class to NavItems", () => {
+    render(<SidebarNav {...defaultProps} />);
+
+    // Get the NavItem containers
+    const dashboardNavItem = screen.getByText("Dashboard").closest("li");
+    const tShirtsNavItem = screen.getByText("T-Shirts").closest("li");
+
+    expect(dashboardNavItem).toHaveClass("terkui-sidebar-nav-item");
+    expect(tShirtsNavItem).toHaveClass("terkui-sidebar-nav-item");
+  });
+
+  test("renders with custom components", () => {
+    // Create custom components
+    const CustomNav = forwardRef<HTMLElement>((props, ref) => (
+      <aside {...props} ref={ref} data-testid="custom-nav" />
+    ));
+
+    const CustomNavItem = forwardRef<HTMLElement>((props, ref) => (
+      <div {...props} ref={ref} data-testid="custom-nav-item" />
+    ));
+
+    render(
+      <SidebarNav
+        {...defaultProps}
+        components={{
+          nav: CustomNav,
+          navItem: CustomNavItem,
+        }}
+      />,
+    );
+
+    // Verify custom components are used
+    expect(screen.getByTestId("custom-nav")).toBeInTheDocument();
+    expect(screen.getAllByTestId("custom-nav-item")).toHaveLength(3); // Dashboard, T-Shirts, and Settings
+  });
+
+  test("passes nav props correctly to the Nav component", () => {
+    render(
+      <SidebarNav
+        {...defaultProps}
+        data-testid="sidebar-nav"
+        aria-label="Sidebar Navigation"
+      />,
+    );
+
+    const navElement = screen.getByTestId("sidebar-nav");
+    expect(navElement).toHaveAttribute("aria-label", "Sidebar Navigation");
+    expect(navElement).toHaveAttribute("role", "navigation");
   });
 });

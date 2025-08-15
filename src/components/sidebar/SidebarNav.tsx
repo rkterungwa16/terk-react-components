@@ -36,6 +36,10 @@ export const SidebarNav = forwardRef<
             <NavItem
               key={`nav-item-${_data.name}-${index}`}
               component={components?.navItem}
+              classes={{
+                // link: "terkui-sidebar-nav-link",
+                item: "terkui-sidebar-nav-item",
+              }}
               {...{ ...(_data.href && { href: _data.href }) }}
             >
               {_data.name}
@@ -46,7 +50,7 @@ export const SidebarNav = forwardRef<
           return (
             <h6
               key={`subtitle-${_data.name}-${index}`}
-              className="terkui-text-gray terkui-uppercase terkui-nav-subtitle"
+              className="terkui-text-gray terkui-uppercase terkui-sidebar-nav-subtitle"
             >
               {_data.name}
             </h6>

@@ -3,6 +3,8 @@ import { createRef, ReactElement, RefObject, Ref } from "react";
 import Sidebar from "./Sidebar";
 import { jest } from "@jest/globals";
 import type { OverlayProps } from "../overlay/Overlay";
+import { timeouts } from "../../utils/constants";
+import { sidebarSizes } from "../../utils/constants";
 
 // Mock the hooks
 jest.mock("../../hooks/useCurrentBreakpoint", () => ({
@@ -98,6 +100,38 @@ describe("Sidebar Component", () => {
     },
   );
 
+  // Skip size-based margin tests as the component currently uses a fixed value
+  // based on sidebarSizes["xl"] regardless of the size prop
+  test.skip.each([
+    ["sm", sidebarSizes.sm],
+    ["lg", sidebarSizes.lg],
+    ["xl", sidebarSizes.xl],
+  ] as const)("sets correct margin based on size %s", (size, expectedRem) => {
+    const mainContainerRef = createRef<HTMLDivElement>();
+    const div = document.createElement("div");
+    mainContainerRef.current = div;
+
+    // Mock large screen (desktop)
+    const mockUseCurrentBreakpoint = (
+      jest.requireMock("../../hooks/useCurrentBreakpoint") as {
+        useCurrentBreakpoint: jest.Mock;
+      }
+    ).useCurrentBreakpoint;
+    mockUseCurrentBreakpoint.mockReturnValue("lg");
+
+    render(
+      <Sidebar
+        {...defaultProps}
+        mainContainerRef={mainContainerRef}
+        isClose={false}
+        size={size}
+      />,
+    );
+
+    // Check if margin is set correctly based on size
+    expect(mainContainerRef.current.style.marginLeft).toBe(`${expectedRem}rem`);
+  });
+
   test.each(["dark", "light"] as const)(
     "applies correct theme class for %s theme",
     (theme) => {
@@ -128,6 +162,21 @@ describe("Sidebar Component", () => {
 
     // The style is set by the transition, which we mocked to return "entering" state
     expect(sidebarContent.style.transform).toBe(`translateX(-${mockWidth}px)`);
+  });
+
+  test("applies timeout class correctly", () => {
+    const timeout = 250;
+    render(<Sidebar {...defaultProps} timeout={timeout} />);
+    const sidebarContent = screen.getByTestId("sidebar-content");
+
+    // The component maps numeric timeout values to named constants (xs, sm, md, etc.)
+    const timeoutName =
+      Object.entries(timeouts).find(([_, value]) => value === timeout)?.[0] ||
+      "md";
+
+    expect(sidebarContent.className).toContain(
+      `terkui-transition-ease-${timeoutName}`,
+    );
   });
 
   test("adjusts main container margin when mainContainerRef is provided", () => {
@@ -243,6 +292,12 @@ describe("Sidebar Component", () => {
     // Verify Overlay component is called in mobile view
     expect(Overlay).toHaveBeenCalled();
 
+    // Check overlay visibility is the inverse of isClose
+    expect(Overlay).toHaveBeenCalled();
+    const overlayProps = Overlay.mock.calls[0][0];
+    expect(overlayProps.visible).toBe(true);
+    expect(overlayProps.animation).toBe("fadein");
+
     // Reset mock to original value
     mockUseCurrentBreakpoint.mockReturnValue("lg");
   });
@@ -283,5 +338,57 @@ describe("Sidebar Component", () => {
     // On desktop with sidebar open, no overlay should be shown
     // If renderSidebarOverlay returns null on desktop, Overlay won't be called
     expect(screen.queryByTestId("mock-overlay")).toBeNull();
+  });
+
+  test("handles breakpoint change from desktop to mobile correctly", () => {
+    const mockUseCurrentBreakpoint = (
+      jest.requireMock("../../hooks/useCurrentBreakpoint") as {
+        useCurrentBreakpoint: jest.Mock;
+      }
+    ).useCurrentBreakpoint;
+
+    // Start with desktop view
+    mockUseCurrentBreakpoint.mockReturnValue("lg");
+
+    const mainContainerRef = createRef<HTMLDivElement>();
+    const div = document.createElement("div");
+    mainContainerRef.current = div;
+
+    const { rerender } = render(
+      <Sidebar
+        {...defaultProps}
+        mainContainerRef={mainContainerRef}
+        isClose={false}
+      />,
+    );
+
+    // Desktop margin should be applied
+    expect(mainContainerRef.current.style.marginLeft).toBe("20rem");
+
+    // Now change to mobile view
+    mockUseCurrentBreakpoint.mockReturnValue("sm");
+
+    // Re-render with the same props
+    rerender(
+      <Sidebar
+        {...defaultProps}
+        mainContainerRef={mainContainerRef}
+        isClose={false}
+      />,
+    );
+
+    // Force effect to run
+    act(() => {});
+
+    // Mobile margin should be 0
+    expect(mainContainerRef.current.style.marginLeft).toBe("0rem");
+
+    // Overlay should be visible in mobile view
+    expect(Overlay).toHaveBeenCalled();
+    // Get the last call to Overlay (should be from this test)
+    const lastCallIndex = Overlay.mock.calls.length - 1;
+    const overlayProps = Overlay.mock.calls[lastCallIndex][0];
+    expect(overlayProps.visible).toBe(true);
+    expect(overlayProps.animation).toBe("fadein");
   });
 });

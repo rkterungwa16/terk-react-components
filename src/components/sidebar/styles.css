@@ -42,3 +42,33 @@
   color: #4f5d73;
   background-color: #ffffff;
 }
+
+.terkui-sidebar-nav-item {
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.terkui-sidebar-nav-link {
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.terkui-sidebar-nav-subtitle {
+  font-size: 1rem;
+  white-space: nowrap;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.terkui-sidebar-nav-item:hover {
+  font-weight: 700;
+  color: var(--color-light-gray);
+  background-color: var(--color-gray);
+}
