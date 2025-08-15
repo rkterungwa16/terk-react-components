@@ -1,13 +1,13 @@
-# Nav Component Documentation
+# Nav Component
 
 ## Overview
 
-The `Nav` component is a flexible navigation container that provides structured layout for navigation items. It can be rendered as various HTML elements (`ul`, `div`, `nav`, or a custom component) and supports different alignments and orientations.
+The `Nav` component is a flexible navigation container that provides structured layout for navigation items. It can be rendered as various HTML elements (`ul`, `div`, `nav`, or a custom component) and supports different alignments and orientations through customizable justify and direction props.
 
 ## Import
 
 ```tsx
-import { Nav } from 'path/to/components/nav';
+import { Nav } from 'terk-react-components';
 ```
 
 ## Props
@@ -16,8 +16,8 @@ import { Nav } from 'path/to/components/nav';
 |------|------|---------|-------------|
 | `className` | `string` | `undefined` | Additional CSS class(es) to apply to the navigation container |
 | `component` | `"div" \| "ul" \| "nav" \| ElementType` | `"ul"` | The component used for the root node |
-| `justify` | `"start" \| "center" \| "end"` | `undefined` | Horizontal alignment of navigation items |
-| `direction` | `"horizontal" \| "vertical"` | `undefined` | Direction of the navigation layout |
+| `justify` | `"start" \| "center" \| "end"` | `undefined` | Horizontal alignment of navigation items (applies `justify-content` CSS property) |
+| `direction` | `"horizontal" \| "vertical"` | `undefined` | Direction of the navigation layout (controls `flex-direction` CSS property) |
 
 Additionally, the component accepts all standard HTML attributes that apply to the chosen root element (div, ul, or nav).
 
@@ -27,9 +27,9 @@ Additionally, the component accepts all standard HTML attributes that apply to t
 
 ```tsx
 <Nav>
-  <NavItem href="/home">Home</NavItem>
-  <NavItem href="/about">About</NavItem>
-  <NavItem href="/contact">Contact</NavItem>
+  <NavItem component="li" href="/home">Home</NavItem>
+  <NavItem component="li" href="/about">About</NavItem>
+  <NavItem component="li" href="/contact">Contact</NavItem>
 </Nav>
 ```
 
@@ -37,9 +37,9 @@ Additionally, the component accepts all standard HTML attributes that apply to t
 
 ```tsx
 <Nav justify="center">
-  <NavItem href="/home">Home</NavItem>
-  <NavItem href="/about">About</NavItem>
-  <NavItem href="/contact">Contact</NavItem>
+  <NavItem component="li" href="/home">Home</NavItem>
+  <NavItem component="li" href="/about">About</NavItem>
+  <NavItem component="li" href="/contact">Contact</NavItem>
 </Nav>
 ```
 
@@ -47,9 +47,9 @@ Additionally, the component accepts all standard HTML attributes that apply to t
 
 ```tsx
 <Nav direction="vertical">
-  <NavItem href="/home">Home</NavItem>
-  <NavItem href="/about">About</NavItem>
-  <NavItem href="/contact">Contact</NavItem>
+  <NavItem component="li" href="/home">Home</NavItem>
+  <NavItem component="li" href="/about">About</NavItem>
+  <NavItem component="li" href="/contact">Contact</NavItem>
 </Nav>
 ```
 
@@ -57,9 +57,9 @@ Additionally, the component accepts all standard HTML attributes that apply to t
 
 ```tsx
 <Nav component="nav" justify="end">
-  <NavItem href="/home">Home</NavItem>
-  <NavItem href="/about">About</NavItem>
-  <NavItem href="/contact">Contact</NavItem>
+  <NavItem component="li" href="/home">Home</NavItem>
+  <NavItem component="li" href="/about">About</NavItem>
+  <NavItem component="li" href="/contact">Contact</NavItem>
 </Nav>
 ```
 
@@ -71,8 +71,8 @@ const CustomNav = forwardRef((props, ref) => (
 ));
 
 <Nav component={CustomNav}>
-  <NavItem href="/home">Home</NavItem>
-  <NavItem href="/about">About</NavItem>
+  <NavItem component="li" href="/home">Home</NavItem>
+  <NavItem component="li" href="/about">About</NavItem>
 </Nav>
 ```
 
@@ -81,11 +81,11 @@ const CustomNav = forwardRef((props, ref) => (
 ```tsx
 <Nav direction="vertical">
   <h6 className="terkui-nav-subtitle">Main Navigation</h6>
-  <NavItem href="/home">Home</NavItem>
-  <NavItem href="/about">About</NavItem>
+  <NavItem component="li" href="/home">Home</NavItem>
+  <NavItem component="li" href="/about">About</NavItem>
   <h6 className="terkui-nav-subtitle">User Options</h6>
-  <NavItem href="/profile">Profile</NavItem>
-  <NavItem href="/settings">Settings</NavItem>
+  <NavItem component="li" href="/profile">Profile</NavItem>
+  <NavItem component="li" href="/settings">Settings</NavItem>
 </Nav>
 ```
 
@@ -113,12 +113,10 @@ The component comes with the following default styling:
 - `.terkui-nav-direction-vertical`: Vertical layout
   - Sets `flex-direction: column`
 
-- `.terkui-nav-subtitle`: Used for navigation section subtitles
-  - Sets `font-size: 1rem`
-  - Sets `white-space: nowrap`
-  - Sets `padding: 0.75rem 1rem`
-  - Sets `margin: 0`
-  - Sets `letter-spacing: 2px`
+- `.terkui-nav-filled`: When you want the navigation to take full width
+  - Sets `width: 100%`
+
+Note: The documentation references `.terkui-nav-subtitle`, but this class is not defined in the current styles.css implementation. You may need to add it if you want to use navigation subtitles as shown in the examples.
 
 You can customize the styling by:
 
@@ -129,3 +127,10 @@ You can customize the styling by:
 
 - The component includes `role="navigation"` to ensure proper accessibility
 - When using with `NavItem` components, ensure that you provide proper ARIA attributes for active and disabled states
+- For navigation menus that serve as the main navigation, consider using the `<nav>` element with `component="nav"` for better semantic structure
+
+## Implementation Notes
+
+- The Nav component does not import any CSS directly; styles are applied through class names
+- Make sure you have imported the main stylesheet from the library when using this component
+- For proper nesting, use a `component` value that semantically matches your usage (e.g., use `ul` when NavItems are `li` elements)

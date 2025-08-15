@@ -1,13 +1,13 @@
-# NavItem Component Documentation
+# NavItem Component
 
 ## Overview
 
-The `NavItem` component is a navigation item wrapper that renders as an `<li>` element by default, but can be configured to render as other elements. It's designed to be used in navigation menus and lists. When provided with an `href` prop, it automatically wraps its children in a `Link` component. The component includes white text styling by default.
+The `NavItem` component is a navigation item wrapper that can be configured to render as various HTML elements (`li`, `div`, `span`, or a custom component). It's designed to be used in navigation menus and lists. When provided with an `href` prop, it automatically wraps its children in a `Link` component. The component includes white text styling by default.
 
 ## Import
 
 ```tsx
-import { NavItem } from 'path/to/components/nav';
+import { NavItem } from 'terk-react-components';
 ```
 
 ## Props
@@ -20,7 +20,7 @@ The `NavItem` component accepts all properties from the `Link` component plus th
 |------|------|---------|-------------|
 | `classes.item` | `string` | `undefined` | Additional CSS class(es) to apply to the container element |
 | `classes.link` | `string` | `undefined` | Additional CSS class(es) to apply to the link element (when href is provided) |
-| `component` | `"div" \| "li" \| ElementType` | `"li"` | Required. The component used for the root node |
+| `component` | `"div" \| "li" \| "span" \| ElementType` | `"li"` | Required. The component used for the root node |
 
 ### Inherited from LinkProps
 
@@ -40,19 +40,20 @@ Additionally, the component accepts all standard HTML anchor attributes.
 ### Basic Usage
 
 ```tsx
-<NavItem href="/home">Home</NavItem>
+<NavItem component="li" href="/home">Home</NavItem>
 ```
 
 ### With Active State
 
 ```tsx
-<NavItem href="/about" active>About</NavItem>
+<NavItem component="li" href="/about" active>About</NavItem>
 ```
 
 ### Custom Styling
 
 ```tsx
 <NavItem 
+  component="li"
   href="/contact" 
   classes={{
     item: "custom-item-class",
@@ -66,7 +67,7 @@ Additionally, the component accepts all standard HTML anchor attributes.
 ### Without Link (Content Only)
 
 ```tsx
-<NavItem>
+<NavItem component="li">
   <span>Custom Content</span>
 </NavItem>
 ```
@@ -95,18 +96,10 @@ const CustomComponent = forwardRef((props, ref) => (
 
 The component comes with minimal default styling:
 
-- `.terkui-nav-item`: Applied to the root element (li, div, or custom component)
-  - Sets `position: relative`
-  - Sets `white-space: nowrap`
-  - Sets `text-decoration: none`
-  - Sets `cursor: pointer`
-  - Sets `font-weight: 500`
-  - Sets `padding: 0.75rem 1rem`
-  - Sets `border-radius: 0.5rem`
-  - Includes hover state styling:
-    - Increases `font-weight` to 700
-    - Changes text color to light gray
-    - Adds gray background color
+- `.terkui-nav-item`: Applied to the root element (li, div, span, or custom component)
+- `.terkui-text-white`: Applied to provide white text color
+
+Note: The documentation suggests hover state styling and other properties, but these aren't defined in the current styles.css implementation. You may need to add these styles if needed.
 
 You can customize the styling by:
 
@@ -118,3 +111,10 @@ You can customize the styling by:
 
 - When `active` is true, the link will have `aria-current="page"`
 - When `disabled` is true, the link will have `aria-disabled="true"` and `tabIndex={-1}`
+
+## Implementation Notes
+
+- The NavItem component imports styles.css for basic styling
+- The `component` prop is required and determines the root HTML element
+- When using NavItem within a Nav component, ensure the component types are semantically appropriate (e.g., use `li` when the Nav is a `ul`)
+- The component automatically wraps content in a Link component when an href is provided

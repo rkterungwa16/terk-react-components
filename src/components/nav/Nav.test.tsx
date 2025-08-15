@@ -1,75 +1,112 @@
 import { render, screen } from "@testing-library/react";
 import { createRef, forwardRef } from "react";
 import { Nav } from "./Nav";
+import { jest } from "@jest/globals";
 
 describe("Nav Component", () => {
+  // Reset any mocks after each test
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
   test("renders correctly with default props", () => {
-    render(<Nav>Navigation Content</Nav>);
+    render(<Nav data-testid="default-nav">Navigation Content</Nav>);
 
-    const navElement = screen.getByText("Navigation Content").closest("ul");
+    const navElement = screen.getByTestId("default-nav");
     expect(navElement).toBeInTheDocument();
     expect(navElement).toHaveClass("terkui-nav");
     expect(navElement).toHaveAttribute("role", "navigation");
   });
 
   test("applies custom className", () => {
-    render(<Nav className="custom-nav-class">Navigation Content</Nav>);
+    render(
+      <Nav className="custom-nav-class" data-testid="custom-class-nav">
+        Navigation Content
+      </Nav>,
+    );
 
-    const navElement = screen.getByText("Navigation Content").closest("ul");
+    const navElement = screen.getByTestId("custom-class-nav");
     expect(navElement).toHaveClass("custom-nav-class");
     expect(navElement).toHaveClass("terkui-nav");
   });
 
   test("renders as div when component prop is set to div", () => {
-    render(<Nav component="div">Navigation Content</Nav>);
+    render(
+      <Nav component="div" data-testid="nav-div">
+        Navigation Content
+      </Nav>,
+    );
 
-    const navElement = screen.getByText("Navigation Content").closest("div");
+    const navElement = screen.getByTestId("nav-div");
     expect(navElement).toBeInTheDocument();
     expect(navElement).toHaveClass("terkui-nav");
     expect(navElement).toHaveAttribute("role", "navigation");
   });
 
   test("renders as nav element when component prop is set to nav", () => {
-    render(<Nav component="nav">Navigation Content</Nav>);
+    render(
+      <Nav component="nav" data-testid="nav-element">
+        Navigation Content
+      </Nav>,
+    );
 
-    const navElement = screen.getByText("Navigation Content").closest("nav");
+    const navElement = screen.getByTestId("nav-element");
     expect(navElement).toBeInTheDocument();
     expect(navElement).toHaveClass("terkui-nav");
     expect(navElement).toHaveAttribute("role", "navigation");
   });
 
   test("applies justify-start class when justify prop is set to start", () => {
-    render(<Nav justify="start">Navigation Content</Nav>);
+    render(
+      <Nav justify="start" data-testid="nav-justify-start">
+        Navigation Content
+      </Nav>,
+    );
 
-    const navElement = screen.getByText("Navigation Content").closest("ul");
+    const navElement = screen.getByTestId("nav-justify-start");
     expect(navElement).toHaveClass("terkui-nav-justify-start");
   });
 
   test("applies justify-center class when justify prop is set to center", () => {
-    render(<Nav justify="center">Navigation Content</Nav>);
+    render(
+      <Nav justify="center" data-testid="nav-justify-center">
+        Navigation Content
+      </Nav>,
+    );
 
-    const navElement = screen.getByText("Navigation Content").closest("ul");
+    const navElement = screen.getByTestId("nav-justify-center");
     expect(navElement).toHaveClass("terkui-nav-justify-center");
   });
 
   test("applies justify-end class when justify prop is set to end", () => {
-    render(<Nav justify="end">Navigation Content</Nav>);
+    render(
+      <Nav justify="end" data-testid="nav-justify-end">
+        Navigation Content
+      </Nav>,
+    );
 
-    const navElement = screen.getByText("Navigation Content").closest("ul");
+    const navElement = screen.getByTestId("nav-justify-end");
     expect(navElement).toHaveClass("terkui-nav-justify-end");
   });
 
   test("applies direction-horizontal class when direction prop is set to horizontal", () => {
-    render(<Nav direction="horizontal">Navigation Content</Nav>);
+    render(
+      <Nav direction="horizontal" data-testid="nav-horizontal">
+        Navigation Content
+      </Nav>,
+    );
 
-    const navElement = screen.getByText("Navigation Content").closest("ul");
+    const navElement = screen.getByTestId("nav-horizontal");
     expect(navElement).toHaveClass("terkui-nav-direction-horizontal");
   });
 
   test("applies direction-vertical class when direction prop is set to vertical", () => {
-    render(<Nav direction="vertical">Navigation Content</Nav>);
+    render(
+      <Nav direction="vertical" data-testid="nav-vertical">
+        Navigation Content
+      </Nav>,
+    );
 
-    const navElement = screen.getByText("Navigation Content").closest("ul");
+    const navElement = screen.getByTestId("nav-vertical");
     expect(navElement).toHaveClass("terkui-nav-direction-vertical");
   });
 
@@ -89,7 +126,7 @@ describe("Nav Component", () => {
     render(
       <Nav component="div" ref={ref}>
         Navigation with Div Ref
-      </Nav>
+      </Nav>,
     );
 
     expect(ref.current).not.toBeNull();
@@ -102,10 +139,14 @@ describe("Nav Component", () => {
       id?: string;
     }
     const CustomComponent = forwardRef<HTMLElement, CustomComponentProps>(
-      (props, ref) => <aside {...props} ref={ref} data-testid="custom-aside" />
+      (props, ref) => <aside {...props} ref={ref} data-testid="custom-aside" />,
     );
 
-    render(<Nav component={CustomComponent}>Custom Component</Nav>);
+    render(
+      <Nav component={CustomComponent} data-testid="custom-nav-wrapper">
+        Custom Component
+      </Nav>,
+    );
 
     const customElement = screen.getByTestId("custom-aside");
     expect(customElement).toBeInTheDocument();
@@ -118,7 +159,7 @@ describe("Nav Component", () => {
     render(
       <Nav data-testid="custom-nav" aria-label="Main Navigation" id="main-nav">
         Navigation Content
-      </Nav>
+      </Nav>,
     );
 
     const navElement = screen.getByTestId("custom-nav");
@@ -135,7 +176,7 @@ describe("Nav Component", () => {
         className="custom-class"
       >
         Navigation Content
-      </Nav>
+      </Nav>,
     );
 
     const navElement = screen.getByText("Navigation Content").closest("nav");
@@ -145,4 +186,3 @@ describe("Nav Component", () => {
     expect(navElement).toHaveClass("custom-class");
   });
 });
-

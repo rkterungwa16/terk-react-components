@@ -9,23 +9,36 @@ export interface NavItemProps {
     link?: string;
     item?: string;
   };
-  component: "div" | "li" | ElementType;
+  component: "div" | "li" | "span" | ElementType;
+  "data-testid"?: string;
 }
 export const NavItem = forwardRef<
   HTMLLIElement | HTMLDivElement,
   LinkProps & NavItemProps
 >(({ children, component = "li", ...others }, ref) => {
-  const classes = ["terkui-nav-item", "terkui-text-white", others.classes?.item];
+  const classes = [
+    "terkui-nav-item",
+    "terkui-text-white",
+    others.classes?.item,
+  ];
   const Component = component;
-  if (others.href) {
+  // Extract props that should not be passed to Link
+  const {
+    classes: classesProps,
+    component: componentProp,
+    "data-testid": testId,
+    ...linkProps
+  } = others;
+
+  if (linkProps.href) {
     children = (
-      <Link className={classnames(others.classes?.link)} {...others}>
+      <Link className={classnames(classesProps?.link)} {...linkProps}>
         {children}
       </Link>
     );
   }
   return (
-    <Component className={classnames(classes)} ref={ref}>
+    <Component className={classnames(classes)} ref={ref} data-testid={testId}>
       {children}
     </Component>
   );
