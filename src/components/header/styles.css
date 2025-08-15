@@ -9,3 +9,34 @@
 .terkui-header-fixed {
   position: fixed;
 }
+
+.terkui-header-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.terkui-header-nav-item {
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  color: var(--color-black);
+  border-radius: 0.5rem;
+}
+
+.terkui-header-nav-subtitle {
+  font-size: 1rem;
+  white-space: nowrap;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.terkui-header-nav-item:hover {
+  font-weight: 700;
+  /* color: var(--color-light-gray);
+  background-color: var(--color-gray); */
+}
