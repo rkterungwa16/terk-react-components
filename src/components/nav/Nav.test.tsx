@@ -110,6 +110,46 @@ describe("Nav Component", () => {
     expect(navElement).toHaveClass("terkui-nav-direction-vertical");
   });
 
+  test("applies single padding class when padding prop has single value", () => {
+    render(
+      <Nav padding={{ p: "md" }} data-testid="nav-padding">
+        Navigation Content
+      </Nav>,
+    );
+
+    const navElement = screen.getByTestId("nav-padding");
+    expect(navElement).toHaveClass("terkui-p-md");
+  });
+
+  test("applies multiple padding classes when padding prop has multiple values", () => {
+    render(
+      <Nav
+        padding={{ pt: "lg", pb: "sm", pl: "xs", pr: "xl" }}
+        data-testid="nav-multiple-padding"
+      >
+        Navigation Content
+      </Nav>,
+    );
+
+    const navElement = screen.getByTestId("nav-multiple-padding");
+    expect(navElement).toHaveClass("terkui-pt-lg");
+    expect(navElement).toHaveClass("terkui-pb-sm");
+    expect(navElement).toHaveClass("terkui-pl-xs");
+    expect(navElement).toHaveClass("terkui-pr-xl");
+  });
+
+  test("applies horizontal and vertical padding classes", () => {
+    render(
+      <Nav padding={{ px: "2xl", py: "md" }} data-testid="nav-axis-padding">
+        Navigation Content
+      </Nav>,
+    );
+
+    const navElement = screen.getByTestId("nav-axis-padding");
+    expect(navElement).toHaveClass("terkui-px-2xl");
+    expect(navElement).toHaveClass("terkui-py-md");
+  });
+
   test("forwards ref to the underlying element", () => {
     const ref = createRef<HTMLUListElement>();
 
@@ -184,5 +224,28 @@ describe("Nav Component", () => {
     expect(navElement).toHaveClass("terkui-nav-justify-center");
     expect(navElement).toHaveClass("terkui-nav-direction-vertical");
     expect(navElement).toHaveClass("custom-class");
+  });
+
+  test("combines padding with other props correctly", () => {
+    render(
+      <Nav
+        component="nav"
+        justify="start"
+        direction="horizontal"
+        padding={{ p: "lg" }}
+        className="custom-class"
+        data-testid="nav-combined"
+      >
+        Navigation Content
+      </Nav>,
+    );
+
+    const navElement = screen.getByTestId("nav-combined");
+    expect(navElement).toHaveClass("terkui-nav");
+    expect(navElement).toHaveClass("terkui-nav-justify-start");
+    expect(navElement).toHaveClass("terkui-nav-direction-horizontal");
+    expect(navElement).toHaveClass("terkui-p-lg");
+    expect(navElement).toHaveClass("custom-class");
+    expect(navElement.tagName).toBe("NAV");
   });
 });

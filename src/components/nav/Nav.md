@@ -18,6 +18,8 @@ import { Nav } from 'terk-react-components';
 | `component` | `"div" \| "ul" \| "nav" \| ElementType` | `"ul"` | The component used for the root node |
 | `justify` | `"start" \| "center" \| "end"` | `undefined` | Horizontal alignment of navigation items (applies `justify-content` CSS property) |
 | `direction` | `"horizontal" \| "vertical"` | `undefined` | Direction of the navigation layout (controls `flex-direction` CSS property) |
+| `padding` | `PaddingSpacing` | `undefined` | Configures padding for the navigation using predefined spacing values |
+| `data-testid` | `string` | `undefined` | Test ID for testing library selection (primarily for testing) |
 
 Additionally, the component accepts all standard HTML attributes that apply to the chosen root element (div, ul, or nav).
 
@@ -76,6 +78,25 @@ const CustomNav = forwardRef((props, ref) => (
 </Nav>
 ```
 
+### With Padding
+
+```tsx
+<Nav padding={{ px: "lg", py: "md" }}>
+  <NavItem component="li" href="/home">Home</NavItem>
+  <NavItem component="li" href="/about">About</NavItem>
+  <NavItem component="li" href="/contact">Contact</NavItem>
+</Nav>
+```
+
+### With Multiple Padding Values
+
+```tsx
+<Nav padding={{ pt: "xl", pb: "sm", pl: "md", pr: "lg" }}>
+  <NavItem component="li" href="/home">Home</NavItem>
+  <NavItem component="li" href="/about">About</NavItem>
+</Nav>
+```
+
 ### With Subtitle Section
 
 ```tsx
@@ -115,6 +136,12 @@ The component comes with the following default styling:
 
 - `.terkui-nav-filled`: When you want the navigation to take full width
   - Sets `width: 100%`
+
+- Padding utility classes generated from the `padding` prop:
+  - `.terkui-p-{size}`: All-sides padding (where size is xs, sm, md, lg, xl, or 2xl)
+  - `.terkui-pt-{size}`, `.terkui-pr-{size}`, `.terkui-pb-{size}`, `.terkui-pl-{size}`: Individual side padding
+  - `.terkui-px-{size}`: Horizontal padding (left and right)
+  - `.terkui-py-{size}`: Vertical padding (top and bottom)
 
 Note: The documentation references `.terkui-nav-subtitle`, but this class is not defined in the current styles.css implementation. You may need to add it if you want to use navigation subtitles as shown in the examples.
 
