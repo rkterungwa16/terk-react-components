@@ -25,6 +25,7 @@ import { HeaderNav } from 'terk-react-components';
 | `components.nav` | `"div" \| "ul" \| "nav" \| ElementType` | Required | The component type to use for the nav element |
 | `components.navItem` | `"div" \| "li" \| "span" \| ElementType` | Required | The component type to use for the navigation items |
 | `data` | `HeaderNavData` | Required | Array of navigation items to render (see HeaderNavData format below) |
+| `padding` | `PaddingSpacing` | `undefined` | Configures padding for the navigation container using predefined spacing values |
 | `...rest` | `HTMLAttributes<HTMLElement>` | - | All other props are passed to the underlying Nav component |
 
 ### HeaderNavData Format
@@ -181,6 +182,7 @@ function MainHeader() {
             navItem: "li"
           }}
           data={navigationData}
+          padding={{ px: "md", py: "sm" }}
         />
       </div>
     </Header>
@@ -213,6 +215,7 @@ function CustomizedHeaderNav() {
       }}
       data={navigationData}
       className="header-navigation"
+      padding={{ p: "lg" }}
     />
   );
 }
@@ -228,6 +231,15 @@ The component uses the following CSS classes:
   - Provides positioning, whitespace handling, text decoration, cursor, font weight, padding, and border radius
   - Includes hover effects to emphasize interactive items
 - `.terkui-header-nav-subtitle`: Available for subtitle styling (not currently used by default)
+
+The component also supports standard padding utility classes based on the `padding` prop:
+- `.terkui-p-{size}` - Applied for all-sides padding (where size is xs, sm, md, lg, xl, or 2xl)
+- `.terkui-pt-{size}` - Top padding
+- `.terkui-pr-{size}` - Right padding
+- `.terkui-pb-{size}` - Bottom padding
+- `.terkui-pl-{size}` - Left padding
+- `.terkui-px-{size}` - Horizontal padding (left and right)
+- `.terkui-py-{size}` - Vertical padding (top and bottom)
 
 The component also inherits classes from the Nav component:
 - `.terkui-nav-direction-horizontal`: Sets horizontal layout
@@ -261,3 +273,4 @@ The component also inherits classes from the Nav component:
 4. Consider how navigation will respond at different viewport sizes
 5. Limit the number of top-level navigation items to avoid overcrowding the header
 6. For complex navigation structures, consider implementing a mobile-friendly navigation pattern
+7. Use the `padding` prop for consistent spacing rather than manually adding padding classes

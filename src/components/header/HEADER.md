@@ -23,6 +23,7 @@ import { Header } from 'terk-react-components';
 | `className` | `string` | `undefined` | Additional CSS class names to apply to the header |
 | `position` | `"fixed" \| "sticky"` | `undefined` | Controls the positioning behavior of the header |
 | `container` | `{ className?: string; breakpoint: ContainerBreakpoint }` | `undefined` | Configuration for the inner Container component |
+| `padding` | `PaddingSpacing` | `undefined` | Configures padding for the header using predefined spacing values |
 | `children` | `ReactNode` | `undefined` | The content to be rendered inside the header |
 | `...rest` | `HTMLAttributes<HTMLDivElement>` | - | All other props are passed to the underlying div element |
 
@@ -93,7 +94,7 @@ function StickyHeader() {
 }
 ```
 
-### Fixed Header with Custom Styling
+### Fixed Header with Custom Styling and Padding
 
 ```tsx
 import { Header } from 'terk-react-components';
@@ -106,7 +107,8 @@ function FixedHeader() {
         breakpoint: "fluid",
         className: "container-custom-class" 
       }}
-      className="bg-dark text-white py-3"
+      padding={{ px: "lg", py: "md" }}
+      className="bg-dark text-white"
       style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
     >
       <div className="d-flex justify-content-between align-items-center">
@@ -188,6 +190,7 @@ function InteractiveHeader() {
   return (
     <Header 
       position="sticky"
+      padding={{ p: isExpanded ? "lg" : "md" }}
       className={isExpanded ? 'expanded' : ''}
       onClick={() => console.log('Header clicked')}
     >
@@ -219,6 +222,16 @@ The Header component comes with minimal styling to handle positioning behaviors:
 - `.terkui-header-fixed` - Applied when `position="fixed"` is used
   - Sets `position: fixed` for header that stays in place regardless of scrolling
 
+The Header component also supports standard padding utility classes generated based on the `padding` prop:
+
+- `.terkui-p-{size}` - Applied for all-sides padding (where size is xs, sm, md, lg, xl, or 2xl)
+- `.terkui-pt-{size}` - Top padding
+- `.terkui-pr-{size}` - Right padding
+- `.terkui-pb-{size}` - Bottom padding
+- `.terkui-pl-{size}` - Left padding
+- `.terkui-px-{size}` - Horizontal padding (left and right)
+- `.terkui-py-{size}` - Vertical padding (top and bottom)
+
 When used with the HeaderNav component, the following classes are available:
 
 - `.terkui-header-nav` - Applied to the navigation container
@@ -236,6 +249,12 @@ The Header component relies on these CSS variables:
 |--------------|-------------|
 | `--z-index` | Controls the stacking order of the header (default: 1024) |
 | `--color-black` | Used for text color in header navigation items |
+| `--spacing-xs` | Extra small spacing value (0.125rem/2px) |
+| `--spacing-sm` | Small spacing value (0.25rem/4px) |
+| `--spacing-md` | Medium spacing value (0.5rem/8px) |
+| `--spacing-lg` | Large spacing value (1rem/16px) |
+| `--spacing-xl` | Extra large spacing value (2rem/32px) |
+| `--spacing-2xl` | Double extra large spacing value (4rem/64px) |
 
 ## Accessibility
 
@@ -266,3 +285,4 @@ The Header component uses standard CSS positioning properties which are well-sup
 - Consider using the HeaderNav component for consistent navigation styling
 - For responsive designs, you may need to implement a mobile menu toggle for small screens
 - Test fixed headers on mobile devices to ensure they don't take up too much screen space
+- Use the `padding` prop for consistent spacing rather than manually adding padding classes
