@@ -13,7 +13,6 @@
 .terkui-header-nav {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
 }
 
 .terkui-header-nav-item {
