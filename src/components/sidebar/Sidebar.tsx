@@ -57,6 +57,9 @@ interface ISidebar {
 const Sidebar: FC<ISidebar> = (props) => {
   const [isClose, setClose] = useState(props.isClose);
   const [mobile, setMobile] = useState(true);
+  const overlayContainerRef:
+    | RefObject<HTMLDivElement | null>
+    | Ref<HTMLDivElement | null> = useRef(null);
   const sidebarContainerRef:
     | RefObject<HTMLDivElement | null>
     | Ref<HTMLDivElement | null> = useRef(null);
@@ -105,9 +108,8 @@ const Sidebar: FC<ISidebar> = (props) => {
   }, [props.isClose, props]);
 
   useClickOutside({
-    sidebarContainerRef,
+    overlayContainerRef,
     action: props.handleClose?.(isClose),
-    mainContainerRef: props.mainContainerRef,
   });
 
   const classes = [
@@ -125,6 +127,7 @@ const Sidebar: FC<ISidebar> = (props) => {
           visible={isClose ? false : true}
           animation="fadein"
           timeout={props.timeout}
+          ref={overlayContainerRef}
         />
       );
     }

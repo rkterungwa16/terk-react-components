@@ -10,14 +10,10 @@ This hook is part of the terk-react-components library. No additional installati
 
 ```typescript
 useClickOutside({
-  sidebarContainerRef,
-  mainContainerRef?,
-  toggleButtonRef?,
+  overlayContainerRef,
   action?
 }: {
-  sidebarContainerRef: RefObject<HTMLElement | null>;
-  mainContainerRef?: RefObject<HTMLElement | null>;
-  toggleButtonRef?: RefObject<HTMLElement | null>;
+  overlayContainerRef?: RefObject<HTMLElement | null>;
   action?: () => void;
 }): void
 ```
@@ -26,17 +22,15 @@ useClickOutside({
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `sidebarContainerRef` | `RefObject<HTMLElement \| null>` | Yes | React ref to the element you want to detect clicks outside of (e.g., a sidebar, dropdown menu, or modal) |
-| `mainContainerRef` | `RefObject<HTMLElement \| null>` | No | React ref to a main container element (optional) |
-| `toggleButtonRef` | `RefObject<HTMLElement \| null>` | No | React ref to a toggle button element (optional) |
-| `action` | `() => void` | No | Callback function to be executed when a click is detected outside the referenced element |
+| `overlayContainerRef` | `RefObject<HTMLElement \| null>` | No | React ref to the overlay element that should trigger the action when clicked |
+| `action` | `() => void` | No | Callback function to be executed when the overlay element is clicked |
 
 ## Behavior
 
-- The hook attaches a `mousedown` event listener to the document.
-- When a click is detected outside the `sidebarContainerRef` element and the click target is not a button element, the `action` callback is executed.
-- The event listener is automatically cleaned up when the component unmounts.
-- Note that `mainContainerRef` and `toggleButtonRef` are accepted as parameters but not currently used in the implementation.
+- The hook attaches a `mousedown` event listener to the element referenced by `overlayContainerRef`.
+- When a click is detected on the element, the `action` callback is executed.
+- The event listener is automatically cleaned up when the component unmounts or when the dependencies change.
+- If `overlayContainerRef` is null or undefined, no event listener will be attached.
 
 ## Usage Examples
 
@@ -51,7 +45,7 @@ function Sidebar() {
   const sidebarRef = useRef(null);
   
   useClickOutside({
-    sidebarContainerRef: sidebarRef,
+    overlayContainerRef: sidebarRef,
     action: () => {
       if (isOpen) {
         setIsOpen(false);
@@ -85,7 +79,7 @@ function Modal() {
   const modalRef = useRef(null);
   
   useClickOutside({
-    sidebarContainerRef: modalRef, // Although named for sidebars, it works for any element
+    overlayContainerRef: modalRef,
     action: () => setIsOpen(false)
   });
 
@@ -123,7 +117,7 @@ function TestComponent() {
   const ref = useRef(null);
   
   useClickOutside({
-    sidebarContainerRef: ref,
+    overlayContainerRef: ref,
     action: () => setIsActive(false)
   });
   
@@ -192,7 +186,7 @@ describe('useClickOutside edge cases', () => {
       const nullRef = { current: null };
       
       useClickOutside({
-        sidebarContainerRef: nullRef,
+        overlayContainerRef: nullRef,
         action: () => setIsActive(false)
       });
       
@@ -218,7 +212,7 @@ describe('useClickOutside edge cases', () => {
       const ref = useRef(null);
       
       useClickOutside({
-        sidebarContainerRef: ref
+        overlayContainerRef: ref
         // No action provided
       });
       
@@ -237,9 +231,9 @@ describe('useClickOutside edge cases', () => {
 
 ## Considerations and Limitations
 
-1. **Button Elements**: The hook specifically ignores clicks on button elements, regardless of their position. If you need to detect clicks on buttons outside the target element, you may need to modify the hook.
+1. **Event Target**: The hook now attaches the event listener directly to the overlay container element instead of the document, which changes how clicks are detected and handled.
 
-2. **Unused Parameters**: The current implementation accepts `mainContainerRef` and `toggleButtonRef` parameters, but doesn't use them in the click detection logic. They are included for potential future enhancements.
+2. **Optional Ref**: The `overlayContainerRef` parameter is now optional. If not provided or if it's null, no event listener will be attached.
 
 3. **Event Type**: The hook uses the `mousedown` event rather than `click`. This is generally preferable for UI interactions as it fires earlier in the click sequence.
 

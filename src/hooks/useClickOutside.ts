@@ -1,29 +1,22 @@
 import { RefObject, useEffect } from "react";
 
 export function useClickOutside({
-  sidebarContainerRef,
+  overlayContainerRef,
   action,
 }: {
-  sidebarContainerRef: RefObject<HTMLElement | null>;
-  mainContainerRef?: RefObject<HTMLElement | null>;
-  toggleButtonRef?: RefObject<HTMLElement | null>;
+  overlayContainerRef?: RefObject<HTMLElement | null>;
   action?: () => void;
 }) {
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      const target = event.target as Node;
-      if (
-        target.nodeName !== "BUTTON" &&
-        action &&
-        sidebarContainerRef.current &&
-        !sidebarContainerRef.current.isSameNode(event.target as Node)
-      ) {
+    const doc = overlayContainerRef?.current;
+    function handleClickOutside() {
+      if (action && doc) {
         action();
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    doc?.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      doc?.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [action, sidebarContainerRef]);
+  }, [action, overlayContainerRef]);
 }
