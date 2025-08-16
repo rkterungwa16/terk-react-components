@@ -98,7 +98,14 @@ export const Layout: FC<ILayout> = ({ children }) => {
           <Header container={{ breakpoint: "fluid" }}>
             <HeaderNav
               data={headerNavData}
-              components={{ nav: "nav", navItem: "span" }}
+              components={{
+                nav: {
+                  component: "nav",
+                },
+                navItem: {
+                  component: "span",
+                },
+              }}
             ></HeaderNav>
           </Header>
           <div className="terkui-flex-grow-1 px-3">
