@@ -1,0 +1,29 @@
+.terkui-icon-size-xs {
+  width: var(--icon-size-xs);
+  height: var(--icon-size-xs);
+}
+
+.terkui-icon-size-sm {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+
+.terkui-icon-size-md {
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+}
+
+.terkui-icon-size-lg {
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+}
+
+.terkui-icon-size-xl {
+  width: var(--icon-size-xl);
+  height: var(--icon-size-xl);
+}
+
+.terkui-icon-size-2xl {
+  width: var(--icon-size-2xl);
+  height: var(--icon-size-2xl);
+}
