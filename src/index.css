@@ -47,6 +47,14 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 4rem;
 
+  --icon-size-xs: 1rem;
+  --icon-size-sm: 1.5rem;
+  --icon-size-s: 2rem;
+  --icon-size-md: 2.5rem;
+  --icon-size-lg: 3rem;
+  --icon-size-xl: 3.5rem;
+  --icon-size-2xl: 4rem;
+
   --color-black: #212631;
   --color-white: #ffffff;
   --color-light-gray: #f3f4f7;
