@@ -1,33 +1,41 @@
-import { forwardRef, HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import classnames from "classnames";
 import { Nav, NavProps } from "../nav/Nav";
 import { HeaderNavData } from "./header-nav.data";
 import { NavItem, NavItemProps } from "../nav/NavItem";
+import { PaddingSpacing, generatePaddingClasses } from "../../utils/padding";
 
-export interface HeaderNavProps
-  extends HTMLAttributes<HTMLDivElement | HTMLUListElement | HTMLOListElement> {
+export interface HeaderNavProps {
   className?: string;
   components: {
-    nav: NavProps["component"];
-    navItem: NavItemProps["component"];
+    nav: NavProps;
+    navItem: NavItemProps;
   };
   data: HeaderNavData;
+  /**
+   * Apply padding to the header navigation
+   */
+  padding?: PaddingSpacing;
 }
 
 export const HeaderNav = forwardRef<
   HTMLDivElement | HTMLUListElement | HTMLOListElement,
   HeaderNavProps
->(({ className, components, data, ...rest }, ref) => {
-  const classes = [className, "terkui-header-nav"];
+>(({ className, components, data, padding }, ref) => {
+  const classes = [
+    className,
+    "terkui-header-nav",
+    ...generatePaddingClasses(padding),
+  ];
 
   return (
     <Nav
       className={classnames(classes)}
-      component={components?.nav}
+      component={components?.nav?.component}
       role="navigation"
       direction="horizontal"
       justify="start"
-      {...rest}
+      {...components?.nav}
       ref={ref}
     >
       {data.map((_data, index) => {
@@ -35,7 +43,7 @@ export const HeaderNav = forwardRef<
           return (
             <NavItem
               key={`nav-item-${_data.name}-${index}`}
-              component={components?.navItem}
+              component={components?.navItem?.component}
               classes={{
                 item: "terkui-header-nav-item",
                 // link: "terkui-header-nav-item",
@@ -50,7 +58,7 @@ export const HeaderNav = forwardRef<
           const items = _data.group?.map((_groupItem, index) => (
             <NavItem
               key={`nav-item-${_groupItem.name}-${index}`}
-              component={components?.navItem}
+              component={components?.navItem.component}
               classes={{
                 item: "terkui-header-nav-item",
                 // link: "terkui-header-nav-item",

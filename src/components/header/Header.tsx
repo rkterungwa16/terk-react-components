@@ -1,6 +1,7 @@
 import { forwardRef, HTMLAttributes } from "react";
 import classnames from "classnames";
 import { Container, ContainerBreakpoint } from "../container/Container";
+import { PaddingSpacing, generatePaddingClasses } from "../../utils/padding";
 import "./styles.css";
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
@@ -13,11 +14,20 @@ export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
    * Place header in non-static positions
    */
   position?: "fixed" | "sticky";
+  /**
+   * Apply padding to the header
+   */
+  padding?: PaddingSpacing;
 }
 
 export const Header = forwardRef<HTMLDivElement, HeaderProps>(
-  ({ children, className, container, position, ...rest }, ref) => {
-    const classes = ["terkui-header", `terkui-header-${position}`, className];
+  ({ children, className, container, position, padding, ...rest }, ref) => {
+    const classes = [
+      "terkui-header",
+      ...(position ? [`terkui-header-${position}`] : []),
+      ...generatePaddingClasses(padding),
+      className,
+    ];
 
     return (
       <div className={classnames(classes)} {...rest} ref={ref}>

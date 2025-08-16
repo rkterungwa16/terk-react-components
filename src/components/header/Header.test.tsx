@@ -15,7 +15,7 @@ describe("Header Component", () => {
     const { rerender } = render(
       <Header data-testid="header" position="fixed">
         Content
-      </Header>
+      </Header>,
     );
     let headerElement = screen.getByTestId("header");
     expect(headerElement).toHaveClass("terkui-header-fixed");
@@ -23,7 +23,7 @@ describe("Header Component", () => {
     rerender(
       <Header data-testid="header" position="sticky">
         Content
-      </Header>
+      </Header>,
     );
     headerElement = screen.getByTestId("header");
     expect(headerElement).toHaveClass("terkui-header-sticky");
@@ -33,7 +33,7 @@ describe("Header Component", () => {
     render(
       <Header data-testid="header" className="custom-class">
         Content
-      </Header>
+      </Header>,
     );
 
     const headerElement = screen.getByTestId("header");
@@ -43,12 +43,9 @@ describe("Header Component", () => {
 
   test("renders with container when breakpoint is provided", () => {
     render(
-      <Header
-        data-testid="header"
-        container={{ breakpoint: "lg" }}
-      >
+      <Header data-testid="header" container={{ breakpoint: "lg" }}>
         Content
-      </Header>
+      </Header>,
     );
 
     const headerElement = screen.getByTestId("header");
@@ -64,7 +61,7 @@ describe("Header Component", () => {
         container={{ breakpoint: "md", className: "container-custom-class" }}
       >
         Content
-      </Header>
+      </Header>,
     );
 
     const headerElement = screen.getByTestId("header");
@@ -77,7 +74,7 @@ describe("Header Component", () => {
     render(
       <Header data-testid="header">
         <div data-testid="direct-child">Direct Child</div>
-      </Header>
+      </Header>,
     );
 
     const headerElement = screen.getByTestId("header");
@@ -104,12 +101,71 @@ describe("Header Component", () => {
         data-custom="value"
       >
         Content
-      </Header>
+      </Header>,
     );
 
     const headerElement = screen.getByTestId("header");
     expect(headerElement).toHaveAttribute("id", "custom-id");
     expect(headerElement).toHaveAttribute("aria-label", "Main header");
     expect(headerElement).toHaveAttribute("data-custom", "value");
+  });
+
+  test("applies padding classes when padding prop is provided", () => {
+    render(
+      <Header data-testid="header" padding={{ p: "md" }}>
+        Content
+      </Header>,
+    );
+
+    const headerElement = screen.getByTestId("header");
+    expect(headerElement).toHaveClass("terkui-p-md");
+  });
+
+  test("applies multiple padding classes when multiple padding values are provided", () => {
+    render(
+      <Header
+        data-testid="header"
+        padding={{ pt: "lg", pb: "sm", pl: "xs", pr: "xl" }}
+      >
+        Content
+      </Header>,
+    );
+
+    const headerElement = screen.getByTestId("header");
+    expect(headerElement).toHaveClass("terkui-pt-lg");
+    expect(headerElement).toHaveClass("terkui-pb-sm");
+    expect(headerElement).toHaveClass("terkui-pl-xs");
+    expect(headerElement).toHaveClass("terkui-pr-xl");
+  });
+
+  test("applies horizontal and vertical padding classes", () => {
+    render(
+      <Header data-testid="header" padding={{ px: "2xl", py: "md" }}>
+        Content
+      </Header>,
+    );
+
+    const headerElement = screen.getByTestId("header");
+    expect(headerElement).toHaveClass("terkui-px-2xl");
+    expect(headerElement).toHaveClass("terkui-py-md");
+  });
+
+  test("combines padding with other classes correctly", () => {
+    render(
+      <Header
+        data-testid="header"
+        className="custom-class"
+        position="fixed"
+        padding={{ p: "lg" }}
+      >
+        Content
+      </Header>,
+    );
+
+    const headerElement = screen.getByTestId("header");
+    expect(headerElement).toHaveClass("terkui-header");
+    expect(headerElement).toHaveClass("terkui-header-fixed");
+    expect(headerElement).toHaveClass("terkui-p-lg");
+    expect(headerElement).toHaveClass("custom-class");
   });
 });
