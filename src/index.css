@@ -10,6 +10,7 @@
 @import "./styles/text.css";
 @import "./styles/padding.css";
 @import "./styles/rounded.css";
+@import "./styles/border-bottom.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
