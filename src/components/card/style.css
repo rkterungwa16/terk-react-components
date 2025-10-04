@@ -1,0 +1,12 @@
+terkui-card {
+  /*
+    TODO: Check feasibility of passing flex props for a flexible layout (not just column)
+    TODO: Check feasibility of passing props for padding, mapped to predefined design system classes
+  */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 1rem;
+}
