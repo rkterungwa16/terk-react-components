@@ -3,23 +3,23 @@
 }
 
 .terkui-rounded-1 {
-  border-radius: 0.125rem;
-}
-
-.terkui-rounded-2 {
-  border-radius: 0.25rem;
-}
-
-.terkui-rounded-3 {
   border-radius: 0.5rem;
 }
 
-.terkui-rounded-4 {
+.terkui-rounded-2 {
   border-radius: 0.75rem;
 }
 
-.terkui-rounded-5 {
+.terkui-rounded-3 {
   border-radius: 1rem;
+}
+
+.terkui-rounded-4 {
+  border-radius: 1.5rem;
+}
+
+.terkui-rounded-5 {
+  border-radius: 2rem;
 }
 
 /*

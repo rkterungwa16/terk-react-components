@@ -5,6 +5,7 @@ import { ClientRoutes } from "./routes";
 const LoginPage = lazy(() => import("./pages/login"));
 const RegisterPage = lazy(() => import("./pages/register"));
 const HomePage = lazy(() => import("./pages/home"));
+const CardsPage = lazy(() => import("./pages/cards"));
 
 class App extends Component {
   render() {
@@ -37,6 +38,14 @@ class App extends Component {
               // </PrivateRoute>
               <Suspense fallback={<>...</>}>
                 <HomePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path={ClientRoutes.CARDS}
+            element={
+              <Suspense fallback={<>...</>}>
+                <CardsPage />
               </Suspense>
             }
           />

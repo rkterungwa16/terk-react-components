@@ -1,0 +1,178 @@
+/*
+- Using geometric progression to define the different sizes of spacing
+- xs - 2px(0.125rem)
+- sm - 4px(0.25rem)
+- md - 8px(0.5rem)
+- lg - 16px(1rem)
+- xl - 32px(2rem)
+- 2xl - 64px(4rem)
+ */
+
+.terkui-m-xs {
+  margin: var(--spacing-xs);
+}
+.terkui-m-sm {
+  margin: var(--spacing-sm);
+}
+.terkui-m-md {
+  margin: var(--spacing-md);
+}
+.terkui-m-lg {
+  margin: var(--spacing-lg);
+}
+.terkui-m-xl {
+  margin: var(--spacing-xl);
+}
+.terkui-m-2xl {
+  margin: var(--spacing-2xl);
+}
+
+/*
+  ===LEFT MARGIN===
+ */
+
+.terkui-ml-xs {
+  margin-left: var(--spacing-xs);
+}
+.terkui-ml-sm {
+  margin-left: var(--spacing-sm);
+}
+.terkui-ml-md {
+  margin-left: var(--spacing-md);
+}
+.terkui-ml-lg {
+  margin-left: var(--spacing-lg);
+}
+.terkui-ml-xl {
+  margin-left: var(--spacing-xl);
+}
+.terkui-ml-2xl {
+  margin-left: var(--spacing-2xl);
+}
+
+/*
+  ===RIGHT MARGIN===
+ */
+
+.terkui-mr-xs {
+  margin-right: var(--spacing-xs);
+}
+.terkui-mr-sm {
+  margin-right: var(--spacing-sm);
+}
+.terkui-mr-md {
+  margin-right: var(--spacing-md);
+}
+.terkui-mr-lg {
+  margin-right: var(--spacing-lg);
+}
+.terkui-mr-xl {
+  margin-right: var(--spacing-xl);
+}
+.terkui-mr-2xl {
+  margin-right: var(--spacing-2xl);
+}
+
+/*
+  ===HORIZONTAL MARGIN===
+ */
+
+.terkui-mx-xs {
+  margin-left: var(--spacing-xs);
+  margin-right: var(--spacing-xs);
+}
+.terkui-mx-sm {
+  margin-left: var(--spacing-sm);
+  margin-right: var(--spacing-sm);
+}
+.terkui-mx-md {
+  margin-left: var(--spacing-md);
+  margin-right: var(--spacing-md);
+}
+.terkui-mx-lg {
+  margin-left: var(--spacing-lg);
+  margin-right: var(--spacing-lg);
+}
+.terkui-mx-xl {
+  margin-left: var(--spacing-xl);
+  margin-right: var(--spacing-xl);
+}
+.terkui-mx-2xl {
+  margin-left: var(--spacing-2xl);
+  margin-right: var(--spacing-2xl);
+}
+
+/*
+  ===TOP MARGIN===
+ */
+
+.terkui-mt-xs {
+  margin-top: var(--spacing-xs);
+}
+.terkui-mt-sm {
+  margin-top: var(--spacing-sm);
+}
+.terkui-mt-md {
+  margin-top: var(--spacing-md);
+}
+.terkui-mt-lg {
+  margin-top: var(--spacing-lg);
+}
+.terkui-mt-xl {
+  margin-top: var(--spacing-xl);
+}
+.terkui-mt-2xl {
+  margin-top: var(--spacing-2xl);
+}
+
+/*
+  ===BOTTOM MARGIN===
+ */
+
+.terkui-mb-xs {
+  margin-bottom: var(--spacing-xs);
+}
+.terkui-mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+.terkui-mb-md {
+  margin-bottom: var(--spacing-md);
+}
+.terkui-mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+.terkui-mb-xl {
+  margin-bottom: var(--spacing-xl);
+}
+.terkui-mb-2xl {
+  margin-bottom: var(--spacing-2xl);
+}
+
+/*
+  ===VERTICAL MARGIN===
+ */
+
+.terkui-my-xs {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+.terkui-my-sm {
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+.terkui-my-md {
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+.terkui-my-lg {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+.terkui-my-xl {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+.terkui-my-2xl {
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
+}

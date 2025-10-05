@@ -1,0 +1,154 @@
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.terkui-text-h1,
+.terkui-text-h2,
+.terkui-text-h3,
+.terkui-text-h4,
+.terkui-text-h5,
+.terkui-text-h6,
+.terkui-text-body-md,
+.terkui-text-body-l,
+.terkui-text-body-xl,
+.terkui-text-body-2xl,
+.labels {
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  margin: 0;
+}
+
+h1,
+.terkui-text-h1 {
+  font-size: 3rem;
+}
+
+h2,
+.terkui-text-h2 {
+  font-size: 2.5rem;
+}
+
+h3,
+.terkui-text-h3 {
+  font-size: 2rem;
+}
+
+h4,
+.terkui-text-h4 {
+  font-size: 1.5rem;
+}
+
+h5,
+.terkui-text-h5 {
+  font-size: 1rem;
+}
+
+h6,
+.terkui-text-h6 {
+  font-size: 0.875rem;
+}
+
+.terkui-text-body-md {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.terkui-text-body-l {
+  font-size: 1.5rem;
+}
+
+.terkui-text-labels {
+  font-size: 1.25rem;
+}
+
+p,
+.terkui-text-p {
+  font-size: 1rem;
+}
+
+.terkui-text-body-l {
+  font-size: 2.5rem;
+}
+
+.terkui-text-body-xl {
+  font-size: 3rem;
+}
+
+.terkui-text-body-2xl {
+  font-size: 2rem;
+}
+
+.terkui-text-body-3xl {
+  font-size: 3rem;
+}
+
+.terkui-text-underline {
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: var(--breakpoint-sm)) {
+  h1,
+  .terkui-text-h1 {
+    font-size: 5rem;
+  }
+
+  h2,
+  .terkui-text-h2 {
+    font-size: 4rem;
+  }
+
+  h3,
+  .terkui-text-h3 {
+    font-size: 2.5rem;
+  }
+
+  h4,
+  .terkui-text-h4 {
+    font-size: 1.875rem;
+  }
+
+  h5,
+  .terkui-text-h5 {
+    font-size: 1.5rem;
+  }
+
+  h6,
+  .terkui-text-h6 {
+    font-size: 1.25rem;
+  }
+
+  .terkui-text-body-md {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .terkui-text-body-l {
+    font-size: 2.5rem;
+  }
+
+  .terkui-text-body-xl {
+    font-size: 3rem;
+  }
+
+  .terkui-text-body-2xl {
+    font-size: 4rem;
+  }
+
+  .terkui-text-body-3xl {
+    font-size: 8.75rem;
+  }
+
+  .terkui-text-labels {
+    font-size: 1.25rem;
+  }
+
+  p,
+  .terkui-text-p {
+    font-size: 1rem;
+  }
+}

@@ -11,10 +11,18 @@ terkui-card {
   padding-bottom: 1rem;
 }
 
-terkui-card-header {
+.terkui-card-header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
   padding: 1rem;
+}
+
+
+.terkui-card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
 }

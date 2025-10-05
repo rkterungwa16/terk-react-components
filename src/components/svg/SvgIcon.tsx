@@ -1,18 +1,19 @@
 import { HTMLAttributes, forwardRef } from "react";
 import classnames from "classnames";
 import "./styles.css";
+import { IconSize } from "../../types";
 
 export interface SvgIconProps extends HTMLAttributes<SVGSVGElement> {
   className?: string;
   height?: number;
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  size?: IconSize;
   viewBox?: string;
   width?: number;
 }
 
 export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>(
   ({ className, height, size, width, viewBox, children, ...rest }, ref) => {
-    const classes = [...(size ? [`terkui-icon-size-${size}`] : []), className];
+    const classes = [...(size ? [`terkui-icon-${size}`] : []), className];
 
     return (
       <svg

@@ -1,30 +1,14 @@
 import { forwardRef } from "react";
 import classnames from "classnames";
-import { CardProps } from "./types";
+import { CardIconProps } from "./types";
 
-import "./style.css";
-
-export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ children, className, colors, rounded = 1, border, ...rest }, ref) => {
-    let background = colors?.background;
-    let text = colors?.text;
+export const CardIcon = forwardRef<HTMLDivElement, CardIconProps>(
+  ({ children, className, border, size, ...rest }, ref) => {
     let borderWidthClass;
     let borderStyleClass;
     let borderColorClass;
 
-    if (!background) {
-      background = {
-        name: "white",
-      };
-    }
-
-    if (!text) {
-      text = {
-        name: "black",
-      };
-    }
-
-    if (border) {
+     if (border) {
       borderColorClass = `terkui-border-${border.color.name}${
         border.color?.shade ? `-${border.color.shade}` : ""
       }`;
@@ -33,19 +17,16 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     }
 
     const classes = [
-      `terkui-bg-${background.name}${
-        background?.shade ? `-${background.shade}` : ""
-      }`,
-      `terkui-text-${text.name}${text?.shade ? `-${text.shade}` : ""}`,
-      `terkui-rounded-${rounded}`,
       ...(borderColorClass ? [borderColorClass] : []),
       ...(borderStyleClass ? [borderStyleClass] : []),
       ...(borderWidthClass ? [borderWidthClass] : []),
+      ...(size ? [`terkui-icon-${size}`] : []),
     ];
+
 
     return (
       <div
-        className={classnames(classes, "terkui-card", className)}
+        className={classnames(classes, "terkui-card-icon", className)}
         {...rest}
         ref={ref}
       >
