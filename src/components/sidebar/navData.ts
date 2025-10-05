@@ -17,24 +17,24 @@ export const navData: NavData = [
   {
     component: "nav-item",
     name: "Dashboard",
-    href: "/dashboard",
+    href: "/",
   },
   {
     component: "subtitle",
-    name: "Shirts",
+    name: "Base",
   },
   {
     component: "nav-item",
-    name: "T-Shirts",
-    href: "/shirts/t-shirts",
+    name: "Cards",
+    href: "/base/cards",
   },
   {
     component: "subtitle",
-    name: "Dresses",
+    name: "Buttons",
   },
   {
     component: "nav-item",
-    name: "A-line",
-    href: "/dresses/a-line",
+    name: "Button",
+    href: "/buttons/button",
   },
 ];
