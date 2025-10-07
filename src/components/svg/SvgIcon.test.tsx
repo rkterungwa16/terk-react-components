@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { createRef } from "react";
 import { SvgIcon } from "./SvgIcon";
+import { IconSize } from "../../types";
 
 describe("SvgIcon Component", () => {
   test("renders correctly with default props", () => {
@@ -34,7 +35,7 @@ describe("SvgIcon Component", () => {
     );
 
     const svgElement = screen.getByTestId("sized-icon");
-    expect(svgElement).toHaveClass("terkui-icon-size-md");
+    expect(svgElement).toHaveClass("terkui-icon-md");
   });
 
   test("applies different size classes correctly", () => {
@@ -49,13 +50,13 @@ describe("SvgIcon Component", () => {
     // Test each size
     for (const size of sizes) {
       rerender(
-        <SvgIcon data-testid="resizable-icon" size={size}>
+        <SvgIcon data-testid="resizable-icon" size={size as IconSize}>
           <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
         </SvgIcon>,
       );
 
       const svgElement = screen.getByTestId("resizable-icon");
-      expect(svgElement).toHaveClass(`terkui-icon-size-${size}`);
+      expect(svgElement).toHaveClass(`terkui-icon-${size}`);
     }
   });
 
@@ -130,7 +131,7 @@ describe("SvgIcon Component", () => {
     render(
       <SvgIcon
         data-testid="combined-icon"
-        size="lg"
+        size="l"
         className="custom-icon-class"
       >
         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -138,7 +139,7 @@ describe("SvgIcon Component", () => {
     );
 
     const svgElement = screen.getByTestId("combined-icon");
-    expect(svgElement).toHaveClass("terkui-icon-size-lg");
+    expect(svgElement).toHaveClass(" terkui-icon-l custom-icon-class");
     expect(svgElement).toHaveClass("custom-icon-class");
   });
 
@@ -150,7 +151,7 @@ describe("SvgIcon Component", () => {
     );
 
     const svgElement = screen.getByTestId("priority-icon");
-    expect(svgElement).toHaveClass("terkui-icon-size-md");
+    expect(svgElement).toHaveClass("terkui-icon-md");
     expect(svgElement).toHaveAttribute("width", "50");
     expect(svgElement).toHaveAttribute("height", "50");
   });

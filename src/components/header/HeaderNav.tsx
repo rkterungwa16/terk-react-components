@@ -6,7 +6,7 @@ import { NavItem, NavItemProps } from "../nav/NavItem";
 import { PaddingSpacing, generatePaddingClasses } from "../../utils/padding";
 
 export interface HeaderNavProps {
-  className?: string;
+  className?: string; // TODO: This props seems to be redundant
   components: {
     nav: NavProps;
     navItem: NavItemProps;
@@ -28,14 +28,17 @@ export const HeaderNav = forwardRef<
     ...generatePaddingClasses(padding),
   ];
 
+  let navComponentProps = {
+    ...components.nav,
+    className: classnames(classes, components.nav.className),
+  };
   return (
     <Nav
-      className={classnames(classes)}
       component={components?.nav?.component}
       role="navigation"
       direction="horizontal"
       justify="start"
-      {...components?.nav}
+      {...navComponentProps}
       ref={ref}
     >
       {data.map((_data, index) => {
