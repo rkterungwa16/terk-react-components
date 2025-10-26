@@ -23,7 +23,6 @@ export const CardIcon = forwardRef<HTMLDivElement, CardIconProps>(
       ...(size ? [`terkui-icon-${size}`] : []),
     ];
 
-
     return (
       <div
         className={classnames(classes, "terkui-card-icon", className)}

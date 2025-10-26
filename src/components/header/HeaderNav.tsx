@@ -28,7 +28,7 @@ export const HeaderNav = forwardRef<
     ...generatePaddingClasses(padding),
   ];
 
-  let navComponentProps = {
+  const navComponentProps = {
     ...components.nav,
     className: classnames(classes, components.nav.className),
   };
