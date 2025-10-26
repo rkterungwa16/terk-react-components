@@ -1,4 +1,5 @@
 import { Card } from "../../components/card/Card";
+import { CardBody } from "../../components/card/CardBody";
 import { CardHeader } from "../../components/card/CardHeader";
 import { CardHeaderText } from "../../components/card/CardHeaderText";
 import { CardIcon } from "../../components/card/CardIcon";
@@ -81,6 +82,9 @@ export const Cards = () => {
             </CardHeaderText>
           </div>
         </CardHeader>
+        <CardBody padding={{ p: "lg" }}>
+          Compressing objects: 100% (8/8), done.
+        </CardBody>
       </Card>
     </Layout>
   );

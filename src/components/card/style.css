@@ -9,6 +9,7 @@ terkui-card {
   width: 100%;
   overflow: hidden;
   padding-bottom: 1rem;
+  box-sizing: border-box;
 }
 
 .terkui-card-header {
@@ -17,6 +18,7 @@ terkui-card {
   align-items: center;
   width: 100%;
   padding: 1rem;
+  box-sizing: border-box;
 }
 
 
@@ -25,4 +27,9 @@ terkui-card {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+}
+
+.terkui-card-body {
+  width: 100%;
+  box-sizing: border-box;
 }

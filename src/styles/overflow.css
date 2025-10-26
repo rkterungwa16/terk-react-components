@@ -1,0 +1,23 @@
+.terkui-overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+.terkui-overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+.terkui-overflow-y-auto {
+  overflow-y: auto;
+}
+
+.terkui-overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+.terkui-overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.terkui-overflow-x-auto {
+  overflow-x: auto;
+}

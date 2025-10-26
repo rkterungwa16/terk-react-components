@@ -1,5 +1,5 @@
 import { HtmlHTMLAttributes } from "react";
-import { Colors, ColorShades, IconSize, Rounded, TextComponent } from "../../types";
+import { Colors, ColorShades, IconSize, PaddingSpacing, Rounded, TextComponent } from "../../types";
 
 export interface CardProps extends HtmlHTMLAttributes<HTMLDivElement> {
   colors?: {
@@ -21,6 +21,7 @@ export interface CardProps extends HtmlHTMLAttributes<HTMLDivElement> {
     style: "solid" | "dash";
   };
   rounded?: Rounded;
+  padding?: PaddingSpacing;
 }
 
 export interface CardHeaderProps extends HtmlHTMLAttributes<HTMLDivElement> {
@@ -42,6 +43,24 @@ export interface CardHeaderProps extends HtmlHTMLAttributes<HTMLDivElement> {
     width: 1 | 2;
     style: "solid" | "dash";
   };
+  padding?: PaddingSpacing;
+}
+
+export interface CardBodyProps extends HtmlHTMLAttributes<HTMLDivElement> {
+  colors?: {
+    background?: {
+      name: Colors;
+      shade?: ColorShades;
+    };
+    text?: {
+      name: Colors;
+      shade?: ColorShades;
+    };
+  };
+  overflow?: {
+    y?: "scroll" | "auto" | "hidden";
+  };
+  padding?: PaddingSpacing;
 }
 
 export interface CardIconProps extends HtmlHTMLAttributes<HTMLDivElement> {

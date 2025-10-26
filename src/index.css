@@ -15,6 +15,7 @@
 @import "./styles/typography.css";
 @import "./styles/icon.css";
 @import "./styles/margin.css";
+@import "./styles/overflow.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
