@@ -1,6 +1,7 @@
 import { ElementType, forwardRef, HTMLAttributes } from "react";
 import classnames from "classnames";
-import { generatePaddingClasses, PaddingSpacing } from "../../utils/padding";
+import { generatePaddingClasses } from "../../utils/padding";
+import { PaddingSpacing } from "../../types";
 
 export interface NavProps
   extends HTMLAttributes<HTMLDivElement | HTMLUListElement | HTMLOListElement> {

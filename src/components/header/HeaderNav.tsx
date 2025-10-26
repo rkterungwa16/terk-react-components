@@ -3,7 +3,8 @@ import classnames from "classnames";
 import { Nav, NavProps } from "../nav/Nav";
 import { HeaderNavData } from "./header-nav.data";
 import { NavItem, NavItemProps } from "../nav/NavItem";
-import { PaddingSpacing, generatePaddingClasses } from "../../utils/padding";
+import { generatePaddingClasses } from "../../utils/padding";
+import { PaddingSpacing } from "../../types";
 
 export interface HeaderNavProps {
   className?: string; // TODO: This props seems to be redundant

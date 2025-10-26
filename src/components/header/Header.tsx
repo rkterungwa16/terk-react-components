@@ -1,8 +1,10 @@
 import { forwardRef, HTMLAttributes } from "react";
 import classnames from "classnames";
 import { Container, ContainerBreakpoint } from "../container/Container";
-import { PaddingSpacing, generatePaddingClasses } from "../../utils/padding";
+import {  generatePaddingClasses } from "../../utils/padding";
+import { PaddingSpacing } from "../../types";
 import "./styles.css";
+
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;

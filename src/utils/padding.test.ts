@@ -1,4 +1,5 @@
-import { generatePaddingClasses, PaddingSpacing } from './padding';
+import { PaddingSpacing } from '../types';
+import { generatePaddingClasses, } from './padding';
 
 describe('generatePaddingClasses', () => {
   test('returns an empty array when no padding is provided', () => {
