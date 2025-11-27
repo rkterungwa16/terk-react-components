@@ -1,0 +1,9 @@
+.terkui-img {
+  vertical-align: middle;
+}
+
+.terkui-img-fill {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}

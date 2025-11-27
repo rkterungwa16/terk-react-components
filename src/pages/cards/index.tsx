@@ -3,6 +3,7 @@ import { CardBody } from "../../components/card/CardBody";
 import { CardHeader } from "../../components/card/CardHeader";
 import { CardHeaderText } from "../../components/card/CardHeaderText";
 import { CardIcon } from "../../components/card/CardIcon";
+import { Img } from "../../components/img/Img";
 import Layout from "../../components/layout/Layout";
 import { SvgIcon } from "../../components/svg/SvgIcon";
 import { UploadIcon } from "../../icons/UploadIcon";
@@ -86,6 +87,24 @@ export const Cards = () => {
           Compressing objects: 100% (8/8), done.
         </CardBody>
       </Card>
+
+      <div style={{
+        width: "300px",
+        height: "500px"
+      }}>
+        <Card
+        border={{
+          color: { name: "gray", shade: 300 },
+          width: 1,
+          style: "solid",
+        }}
+        rounded={5}
+        className="terkui-my-lg"
+      >
+        <Img style={{ objectFit: "contain", width: "300px"}} rounded={5} src="https://res.cloudinary.com/doy0uyv63/image/upload/v1694803058/public/content/images/variant/ekty6askqpjjonb8zjcu.jpg" />
+      </Card>
+      </div>
+
     </Layout>
   );
 };
