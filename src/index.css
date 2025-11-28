@@ -1,6 +1,7 @@
 /* Modules */
 @import "./styles/flexbox.css";
 @import "./styles/height.css";
+@import "./styles/width.css";
 @import "./styles/transition.css";
 @import "./styles/link.css";
 @import "./styles/animation.css";

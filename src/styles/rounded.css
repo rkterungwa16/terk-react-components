@@ -25,3 +25,70 @@
 /*
   TODO: rounded-top, rounded-end, rounded-bottom, rounded-start, rounded-circle, rounded-pill
 */
+
+/*
+  BORDER RADIUS BOTTOM
+*/
+.terkui-rounded-b-0 {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.terkui-rounded-b-1 {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.terkui-rounded-b-2 {
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+}
+
+.terkui-rounded-b-3 {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.terkui-rounded-b-4 {
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+.terkui-rounded-b-5 {
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+/*
+  BORDER RADIUS TOP
+*/
+
+.terkui-rounded-t-0 {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.terkui-rounded-t-1 {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.terkui-rounded-t-2 {
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+}
+
+.terkui-rounded-t-3 {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.terkui-rounded-t-4 {
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+}
+
+.terkui-rounded-t-5 {
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}

@@ -35,7 +35,7 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>(
 
     const classes = [
       imgClass,
-      `terkui-rounded-${rounded}`,
+      `terkui-rounded-t-${rounded}`,
       ...(positionClass ? [positionClass] : []),
       ...(objectFitClass ? [objectFitClass] : []),
     ];

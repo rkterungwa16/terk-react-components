@@ -22,6 +22,8 @@ export interface CardProps extends HtmlHTMLAttributes<HTMLDivElement> {
   };
   rounded?: Rounded;
   padding?: PaddingSpacing;
+  height?: string;
+  width?: string;
 }
 
 export interface CardHeaderProps extends HtmlHTMLAttributes<HTMLDivElement> {

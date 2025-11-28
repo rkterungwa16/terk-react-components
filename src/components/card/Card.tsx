@@ -5,12 +5,14 @@ import { CardProps } from "./types";
 import "./style.css";
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ children, className, colors, rounded = 1, border, ...rest }, ref) => {
+  ({ children, className, colors, rounded = 1, border, height, width, ...rest }, ref) => {
     let background = colors?.background;
     let text = colors?.text;
     let borderWidthClass;
     let borderStyleClass;
     let borderColorClass;
+    let heightClass = "terkui-h-100";
+    let widthClass = "terkui-w-100";
 
     if (!background) {
       background = {
@@ -22,6 +24,11 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       text = {
         name: "black",
       };
+    }
+
+    if (height) {
+      heightClass = `terkui-h-${height}`;
+      widthClass = `terkui-w-${width}`;
     }
 
     if (border) {
@@ -38,6 +45,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       }`,
       `terkui-text-${text.name}${text?.shade ? `-${text.shade}` : ""}`,
       `terkui-rounded-${rounded}`,
+      heightClass,
+      widthClass,
       ...(borderColorClass ? [borderColorClass] : []),
       ...(borderStyleClass ? [borderStyleClass] : []),
       ...(borderWidthClass ? [borderWidthClass] : []),

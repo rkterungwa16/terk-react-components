@@ -11,7 +11,11 @@ import { UploadIcon } from "../../icons/UploadIcon";
 export const Cards = () => {
   return (
     <Layout>
-      <Card colors={{ background: { name: "gray", shade: 100 } }} rounded={5}  className="terkui-my-lg">
+      <Card
+        colors={{ background: { name: "gray", shade: 100 } }}
+        rounded={5}
+        className="terkui-my-lg"
+      >
         <CardHeader>
           <CardIcon
             size="2xl"
@@ -88,23 +92,28 @@ export const Cards = () => {
         </CardBody>
       </Card>
 
-      <div style={{
-        width: "300px",
-        height: "500px"
-      }}>
-        <Card
-        border={{
-          color: { name: "gray", shade: 300 },
-          width: 1,
-          style: "solid",
+      <div
+        style={{
+          width: "362.656px",
+          height: "524.656px",
         }}
-        rounded={5}
-        className="terkui-my-lg"
       >
-        <Img style={{ objectFit: "contain", width: "300px"}} rounded={5} src="https://res.cloudinary.com/doy0uyv63/image/upload/v1694803058/public/content/images/variant/ekty6askqpjjonb8zjcu.jpg" />
-      </Card>
+        <Card
+          rounded={2}
+          className="terkui-my-lg"
+          border={{
+            color: { name: "gray", shade: 300 },
+            style: "solid",
+            width: 1,
+          }}
+        >
+          <Img
+            style={{ objectFit: "cover", width: "100%", height: "362.656px" }}
+            rounded={2}
+            src="https://res.cloudinary.com/doy0uyv63/image/upload/v1694803058/public/content/images/variant/ekty6askqpjjonb8zjcu.jpg"
+          />
+        </Card>
       </div>
-
     </Layout>
   );
 };
