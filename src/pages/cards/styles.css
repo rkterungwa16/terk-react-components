@@ -1,0 +1,22 @@
+
+.plp-grid {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 4px;
+}
+
+@media (min-width: 768px) {
+  .plp-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px 6px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .plp-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 8px;
+  }
+}
+

@@ -1,5 +1,12 @@
 import { HtmlHTMLAttributes } from "react";
-import { Colors, ColorShades, IconSize, PaddingSpacing, Rounded, TextComponent } from "../../types";
+import {
+  Colors,
+  ColorShades,
+  IconSize,
+  PaddingSpacing,
+  Rounded,
+  TextComponent,
+} from "../../types";
 
 export interface CardProps extends HtmlHTMLAttributes<HTMLDivElement> {
   colors?: {
@@ -11,6 +18,17 @@ export interface CardProps extends HtmlHTMLAttributes<HTMLDivElement> {
       name: Colors;
       shade?: ColorShades;
     };
+  };
+  hover?: {
+    border?: {
+      color: {
+        name: Colors;
+        shade?: ColorShades;
+      };
+      width: 1 | 2;
+      style: "solid" | "dash";
+    };
+    class?: string;
   };
   border?: {
     color: {

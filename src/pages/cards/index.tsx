@@ -8,6 +8,8 @@ import Layout from "../../components/layout/Layout";
 import { SvgIcon } from "../../components/svg/SvgIcon";
 import { UploadIcon } from "../../icons/UploadIcon";
 
+import "./styles.css";
+
 export const Cards = () => {
   return (
     <Layout>
@@ -93,13 +95,14 @@ export const Cards = () => {
       </Card>
 
       <div
-        style={{
-          width: "362.656px",
-          height: "524.656px",
-        }}
+        // style={{
+        //   width: "362.656px",
+        //   height: "524.656px",
+        // }}
+        className="plp-grid"
       >
         <Card
-          rounded={2}
+          rounded={0}
           className="terkui-my-lg"
           border={{
             color: { name: "gray", shade: 300 },
@@ -109,7 +112,68 @@ export const Cards = () => {
         >
           <Img
             style={{ objectFit: "cover", width: "100%", height: "362.656px" }}
-            rounded={2}
+            rounded={0}
+            src="https://res.cloudinary.com/doy0uyv63/image/upload/v1694803058/public/content/images/variant/ekty6askqpjjonb8zjcu.jpg"
+          />
+        </Card>
+         <Card
+          rounded={0}
+          className="terkui-my-lg"
+          border={{
+            color: { name: "gray", shade: 300 },
+            style: "solid",
+            width: 1,
+          }}
+        >
+          <Img
+            style={{ objectFit: "cover", width: "100%", height: "362.656px" }}
+            rounded={0}
+            src="https://res.cloudinary.com/doy0uyv63/image/upload/v1694803058/public/content/images/variant/ekty6askqpjjonb8zjcu.jpg"
+          />
+        </Card>
+         <Card
+          rounded={0}
+          className="terkui-my-lg"
+          border={{
+            color: { name: "gray", shade: 300 },
+            style: "solid",
+            width: 1,
+          }}
+        >
+          <Img
+            style={{ objectFit: "cover", width: "100%", height: "362.656px" }}
+            rounded={0}
+            src="https://res.cloudinary.com/doy0uyv63/image/upload/v1694803058/public/content/images/variant/ekty6askqpjjonb8zjcu.jpg"
+          />
+        </Card>
+
+        <Card
+          rounded={0}
+          className="terkui-my-lg"
+          border={{
+            color: { name: "gray", shade: 300 },
+            style: "solid",
+            width: 1,
+          }}
+        >
+          <Img
+            style={{ objectFit: "cover", width: "100%", height: "362.656px" }}
+            rounded={0}
+            src="https://res.cloudinary.com/doy0uyv63/image/upload/v1694803058/public/content/images/variant/ekty6askqpjjonb8zjcu.jpg"
+          />
+        </Card>
+         <Card
+          rounded={0}
+          className="terkui-my-lg"
+          border={{
+            color: { name: "gray", shade: 300 },
+            style: "solid",
+            width: 1,
+          }}
+        >
+          <Img
+            style={{ objectFit: "cover", width: "100%", height: "362.656px" }}
+            rounded={0}
             src="https://res.cloudinary.com/doy0uyv63/image/upload/v1694803058/public/content/images/variant/ekty6askqpjjonb8zjcu.jpg"
           />
         </Card>
